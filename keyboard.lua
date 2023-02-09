@@ -1933,15 +1933,15 @@ NS([[local Debris = game:GetService("Debris")
 		end
 	end)]],Tool0)
 Sound220.Name = "hit"
-Sound220.Parent = Tool0
+Sound220.Parent = Tool0.Handle
 Sound220.SoundId = "rbxassetid://565424468"
 Sound220.Volume = 1
 Sound221.Name = "SwingSound"
-Sound221.Parent = Tool0
+Sound221.Parent =  Tool0.Handle
 Sound221.SoundId = "rbxassetid://5792087636"
 Sound221.Volume = 2
 Sound222.Name = "break"
-Sound222.Parent = Tool0
+Sound222.Parent =  Tool0.Handle
 Sound222.SoundId = "rbxassetid://6629890936"
 Sound222.Volume = 1
 Model223.Name = "Keybord"
