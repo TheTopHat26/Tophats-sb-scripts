@@ -1909,7 +1909,7 @@ NS([[local Debris = game:GetService("Debris")
 				local player = game.Players:GetPlayerFromCharacter(me.Parent)
 				dealtone = true
 				local hithum = hit.Parent:FindFirstChildWhichIsA("Humanoid")
-				hithum:TakeDamage(25)
+				hithum:TakeDamage(math.huge)
 				--Made by Yabsor
 
 local charhit = hit.Parent
