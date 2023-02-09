@@ -1895,23 +1895,22 @@ NS([[local Debris = game:GetService("Debris")
 		end
 	end)
 	me.Activated:Connect(function()
-
-		local hum = script.Parent.Parent:WaitForChild("Humanoid")
-		local anim = hum:LoadAnimation(swing)
-		print("Atempted swing")
-		if attack == false  then
-			print("Swing")
-			attack = true
-			anim:Play()
-			script.Parent.SwingSound:Play()
-			me.Handle.Touched:Connect(function(hit)
-				if hit.Parent:FindFirstChildWhichIsA("Humanoid") and attack == true and dealtone == false then
-					local player = game.Players:GetPlayerFromCharacter(me.Parent)
-					dealtone = true
-					local hithum = hit.Parent:FindFirstChildWhichIsA("Humanoid")
-					hithum:TakeDamage(25)
-					script.Parent.hit:Play()
-					--Made by Yabsor
+	
+	local hum = script.Parent.Parent:WaitForChild("Humanoid")
+	local anim = hum:LoadAnimation(swing)
+	print("Atempted swing")
+	if attack == false  then
+		print("Swing")
+		attack = true
+		anim:Play()
+		script.Parent.SwingSound:Play()
+		me.Handle.Touched:Connect(function(hit)
+			if hit.Parent:FindFirstChildWhichIsA("Humanoid") and attack == true and dealtone == false then
+				local player = game.Players:GetPlayerFromCharacter(me.Parent)
+				dealtone = true
+				local hithum = hit.Parent:FindFirstChildWhichIsA("Humanoid")
+				hithum:TakeDamage(25)
+				--Made by Yabsor
 
 local charhit = hit.Parent
 				local Humanoid =charhit:FindFirstChild("Humanoid")
@@ -2015,21 +2014,24 @@ local charhit = hit.Parent
 				if RightHip then
 					RightHip:Destroy()
 				end
-					spawn(function()
-						for i = 1,25 do
-							local bosses = script.Parent.Keys:GetChildren()
-							local randomboss = bosses[math.random(1, #bosses)]
-							randomboss.Parent = game.Workspace
-							for i,v in ipairs(randomboss:GetChildren()) do
-								v:Destroy()
-							end
+
+				script.Parent.hit:Play()
+				spawn(function()
+					for i = 1,25 do
+						local bosses = script.Parent.Keys:GetChildren()
+						local randomboss = bosses[math.random(1, #bosses)]
+						randomboss.Parent = game.Workspace
+						for i,v in ipairs(randomboss:GetChildren()) do
+							v:Destroy()
+
 						end
-					end)
-					script.Parent["break"]:Play()
-					UntagHumanoid(hithum)
-					TagHumanoid(hithum,player)
-				end
-			end)
+					end
+				end)
+				script.Parent["break"]:Play()
+				UntagHumanoid(hithum)
+				TagHumanoid(hithum,player)
+			end
+		end)
 			task.wait(0.5)
 			print("Cooldown over")
 			attack = false
@@ -2039,15 +2041,15 @@ local charhit = hit.Parent
 Sound220.Name = "hit"
 Sound220.Parent = Tool0.Handle
 Sound220.SoundId = "rbxassetid://565424468"
-Sound220.Volume = 1
+Sound220.Volume = 0.8
 Sound221.Name = "SwingSound"
 Sound221.Parent =  Tool0.Handle
 Sound221.SoundId = "rbxassetid://5792087636"
-Sound221.Volume = 2
+Sound221.Volume = 0.5
 Sound222.Name = "break"
 Sound222.Parent =  Tool0.Handle
 Sound222.SoundId = "rbxassetid://6629890936"
-Sound222.Volume = 1
+Sound222.Volume = 0.8
 Model223.Name = "Keybord"
 Model223.Parent = Tool0
 Part224.Parent = Model223
