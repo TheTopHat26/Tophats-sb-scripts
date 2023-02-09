@@ -3377,6 +3377,11 @@ Weld354.C1 = CFrame.new(13.7988281, 0.0249938965, 42.4939995, 2.67022585e-11, -1
 Weld354.Part0 = Part352
 Script355.Name = "qPerfectionWeld"
 Script355.Parent = Tool0
+for i,v in ipairs(Tool0:GetDescendants()) do
+	if v:IsA("Part") then
+		v.Massless = true
+	end
+end
 NS([[	local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
 
 
