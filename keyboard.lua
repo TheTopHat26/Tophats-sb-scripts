@@ -1911,6 +1911,110 @@ NS([[local Debris = game:GetService("Debris")
 					local hithum = hit.Parent:FindFirstChildWhichIsA("Humanoid")
 					hithum:TakeDamage(25)
 					script.Parent.hit:Play()
+					--Made by Yabsor
+
+local charhit = hit.Parent
+				local Humanoid =charhit:FindFirstChild("Humanoid")
+				local Head = charhit:FindFirstChild("Head")
+				local RightArm =charhit:FindFirstChild("Right Arm")
+				local RightLeg = charhit:FindFirstChild("Right Leg")
+				local LeftArm = charhit:FindFirstChild("Left Arm")
+				local LeftLeg = charhit:FindFirstChild("Left Leg")
+				local Torso = charhit:FindFirstChild("Torso")
+				Humanoid.BreakJointsOnDeath = false
+
+				local NewTorsoToHead1 = Instance.new("Attachment") --Head 1
+				NewTorsoToHead1.Position = Vector3.new(0, -0.6, 0)
+				NewTorsoToHead1.Name = "TorsoToHead1"
+				NewTorsoToHead1.Parent = Head
+
+				local NewTorsoToRightArm1 = Instance.new("Attachment") --Right arm 1
+				NewTorsoToRightArm1.Position = Vector3.new(-0.5, 0.5, 0)
+				NewTorsoToRightArm1.Name = "TorsoToRightArm1"
+				NewTorsoToRightArm1.Parent = RightArm
+
+				local NewTorsoToRightLeg1 = Instance.new("Attachment") --Right leg 1
+				NewTorsoToRightLeg1.Position = Vector3.new(0, 1, 0)
+				NewTorsoToRightLeg1.Name = "TorsoToRightLeg1"
+				NewTorsoToRightLeg1.Parent = RightLeg
+
+				local NewTorsoToLeftArm1 = Instance.new("Attachment") --Left arm 1
+				NewTorsoToLeftArm1.Position = Vector3.new(0.5, 0.5, 0)
+				NewTorsoToLeftArm1.Name = "TorsoToLeftArm1"
+				NewTorsoToLeftArm1.Parent = LeftArm
+
+				local NewTorsoToLeftLeg1 = Instance.new("Attachment") --Left leg 1
+				NewTorsoToLeftLeg1.Position = Vector3.new(0, 1, 0)
+				NewTorsoToLeftLeg1.Name = "TorsoToLeftLeg1"
+				NewTorsoToLeftLeg1.Parent = LeftLeg
+
+				--------------------------------------------------------------------
+
+				local NewTorsoToHead0 = Instance.new("Attachment") --Head 0
+				NewTorsoToHead0.Position = Vector3.new(0, 1, 0)
+				NewTorsoToHead0.Name = "TorsoToHead0"
+				NewTorsoToHead0.Parent = Torso
+
+				local NewTorsoToRightArm0 = Instance.new("Attachment") --Right arm 0
+				NewTorsoToRightArm0.Position = Vector3.new(1, 0.5, 0)
+				NewTorsoToRightArm0.Name = "TorsoToRightArm0"
+				NewTorsoToRightArm0.Parent = Torso
+
+				local NewTorsoToRightLeg0 = Instance.new("Attachment") --Right leg 0
+				NewTorsoToRightLeg0.Position = Vector3.new(0.5, -1, 0)
+				NewTorsoToRightLeg0.Name = "TorsoToRightArm0"
+				NewTorsoToRightLeg0.Parent = Torso
+
+				local NewTorsoToLeftArm0 = Instance.new("Attachment") --Left arm 0
+				NewTorsoToLeftArm0.Position = Vector3.new(-1, 0.5, 0)
+				NewTorsoToLeftArm0.Name = "TorsoToLeftArm0"
+				NewTorsoToLeftArm0.Parent = Torso
+
+				local NewTorsoToLeftLeg0 = Instance.new("Attachment") --Left leg 0
+				NewTorsoToLeftLeg0.Position = Vector3.new(-0.5, -1, 0)
+				NewTorsoToLeftLeg0.Name = "TorsoToLeftLeg0"
+				NewTorsoToLeftLeg0.Parent = Torso
+
+				local function CreateBallSocket(Attachment0, Attachment1, TwistLowerAngle, TwistUpperAngle)
+					local BallSocket = Instance.new("BallSocketConstraint")
+					BallSocket.Attachment0 = Attachment0
+					BallSocket.Attachment1 = Attachment1
+					BallSocket.LimitsEnabled = true
+					BallSocket.TwistLimitsEnabled = true
+					BallSocket.TwistLowerAngle = TwistLowerAngle
+					BallSocket.TwistUpperAngle = TwistUpperAngle
+					BallSocket.MaxFrictionTorque = 10
+					BallSocket.Parent = Torso
+				end
+				--Death
+
+				CreateBallSocket(NewTorsoToHead0, NewTorsoToHead1, -45, 45)
+				CreateBallSocket(NewTorsoToRightArm0, NewTorsoToRightArm1, 45, 0)
+				CreateBallSocket(NewTorsoToLeftArm0, NewTorsoToLeftArm1, 0, 45)
+				CreateBallSocket(NewTorsoToRightLeg0, NewTorsoToRightLeg1, -45, 45)
+				CreateBallSocket(NewTorsoToLeftLeg0, NewTorsoToLeftLeg1, -45, 45)
+				Torso.Parent.HumanoidRootPart:Destroy()
+
+				local LeftHip = Torso:FindFirstChild("Left Hip")
+				if LeftHip then
+					LeftHip:Destroy()
+				end
+				local LeftShoulder = Torso:FindFirstChild("Left Shoulder")
+				if LeftShoulder then
+					LeftShoulder:Destroy()
+				end
+				local Neck = Torso:FindFirstChild("Neck")
+				if Neck then
+					Neck:Destroy()
+				end
+				local RightShoulder = Torso:FindFirstChild("Right Shoulder")
+				if RightShoulder then
+					RightShoulder:Destroy()
+				end
+				local RightHip = Torso:FindFirstChild("Right Hip")
+				if RightHip then
+					RightHip:Destroy()
+				end
 					spawn(function()
 						for i = 1,25 do
 							local bosses = script.Parent.Keys:GetChildren()
