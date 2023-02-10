@@ -3696,7 +3696,3 @@ Sound358.SoundId = "rbxassetid://6842136752"
 Sound359.Name = "Melee Bonk Sound 1"
 Sound359.Parent = Folder355
 Sound359.SoundId = "rbxassetid://7109753201"
-for i,v in pairs(mas:GetChildren()) do
-	v.Parent = workspace
-	pcall(function() v:MakeJoints() end)
-end
