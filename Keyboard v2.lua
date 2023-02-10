@@ -1870,7 +1870,6 @@ Animation218.Name = "swing"
 Animation218.Parent = Tool0
 Animation218.AnimationId = "rbxassetid://218504594"
 Script219.Parent = Tool0
-table.insert(cors,sandbox(Script219,function()
 	NS([[local Debris = game:GetService("Debris")
 	local me = script.Parent
 	local attack = false
