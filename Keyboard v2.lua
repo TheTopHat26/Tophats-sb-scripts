@@ -1,21 +1,3 @@
-
---Converted with ttyyuu12345's model to script plugin v4
-function sandbox(var,func)
-	local env = getfenv(func)
-	local newenv = setmetatable({},{
-		__index = function(self,k)
-			if k=="script" then
-				return var
-			else
-				return env[k]
-			end
-		end,
-	})
-	setfenv(func,newenv)
-	return func
-end
-cors = {}
-mas = Instance.new("Model",game:GetService("Lighting"))
 Tool0 = Instance.new("Tool")
 Model1 = Instance.new("Model")
 Part2 = Instance.new("Part")
@@ -376,8 +358,23 @@ Sound356 = Instance.new("Sound")
 Sound357 = Instance.new("Sound")
 Sound358 = Instance.new("Sound")
 Sound359 = Instance.new("Sound")
+Folder355.Name = "Death"
+Folder355.Parent = Tool0
+Sound356.Name = "TF2 - Scout Death"
+Sound356.Parent = Folder355
+Sound356.SoundId = "rbxassetid://1080611063"
+Sound357.Name = "hit"
+Sound357.Parent = Folder355
+Sound357.SoundId = "rbxassetid://565424468"
+Sound357.Volume = 1
+Sound358.Name = "Scout goes BONK"
+Sound358.Parent = Folder355
+Sound358.SoundId = "rbxassetid://6842136752"
+Sound359.Name = "Melee Bonk Sound 1"
+Sound359.Parent = Folder355
+Sound359.SoundId = "rbxassetid://7109753201"
 Tool0.Name = "Keyboard"
-Tool0.Parent = mas
+Tool0.Parent = owner.Backpack
 Tool0.Grip = CFrame.new(-1.90734863e-06, 0, -6.70000458, 3.35276589e-08, -1.35972797e-07, 1, 1, -1.72760309e-07, -3.35276837e-08, 1.72760309e-07, 1, 1.35972797e-07)
 Tool0.GripForward = Vector3.new(-1, 3.35276837404308e-08, -1.3597279746591084e-07)
 Tool0.GripPos = Vector3.new(-0.0000019073486328125, 0, -6.700004577636719)
@@ -3680,28 +3677,3 @@ NS([[local NEVER_BREAK_JOINTS = false -- If you set this to true it will never b
 
 	-- Created by Quenty (@Quenty, follow me on twitter).
 ]],Tool0)
-Folder355.Name = "Death"
-Folder355.Parent = Tool0
-Sound356.Name = "TF2 - Scout Death"
-Sound356.Parent = Folder355
-Sound356.SoundId = "rbxassetid://1080611063"
-Sound357.Name = "hit"
-Sound357.Parent = Folder355
-Sound357.SoundId = "rbxassetid://565424468"
-Sound357.Volume = 1
-Sound358.Name = "Scout goes BONK"
-Sound358.Parent = Folder355
-Sound358.SoundId = "rbxassetid://6842136752"
-Sound359.Name = "Melee Bonk Sound 1"
-Sound359.Parent = Folder355
-Sound359.SoundId = "rbxassetid://7109753201"
-for i,v in pairs(mas:GetChildren()) do
-	v.Parent = workspace
-	pcall(function() v:MakeJoints() end)
-end
-mas:Destroy()
-for i,v in pairs(cors) do
-	spawn(function()
-		pcall(v)
-	end)
-end
