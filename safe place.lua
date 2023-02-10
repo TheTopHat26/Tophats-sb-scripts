@@ -1637,7 +1637,11 @@ ff.Touched:Connect(function(h)
 	--rp.Position = rp.Position + Vector3.new(-2,0,0)
 	if plr.Name ~="Wojtal26" then
 		rp.CFrame = rp.CFrame * CFrame.new(-0.5,0,0)
+		spawn(function()
+		while wait(0.1) do
 		script.Parent.Velocity = script.Parent.CFrame.LookVector * 150
+		end
+		end)
 	end
 end)
 
