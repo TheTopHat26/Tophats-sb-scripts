@@ -1866,6 +1866,11 @@ Animation218.Name = "swing"
 Animation218.Parent = Tool0
 Animation218.AnimationId = "rbxassetid://218504594"
 Script219.Parent = Tool0
+for i,v in ipairs(Tool0:GetDescendants()) do
+	if v:IsA("Part") then
+		v.Massless = true
+	end
+end
 NS([[local Debris = game:GetService("Debris")
 	local me = script.Parent
 	local attack = false
