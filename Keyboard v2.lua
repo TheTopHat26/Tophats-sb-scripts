@@ -377,7 +377,7 @@ Sound357 = Instance.new("Sound")
 Sound358 = Instance.new("Sound")
 Sound359 = Instance.new("Sound")
 Tool0.Name = "Keyboard"
-Tool0.Parent = owner.Backpack
+Tool0.Parent = mas
 Tool0.Grip = CFrame.new(-1.90734863e-06, 0, -6.70000458, 3.35276589e-08, -1.35972797e-07, 1, 1, -1.72760309e-07, -3.35276837e-08, 1.72760309e-07, 1, 1.35972797e-07)
 Tool0.GripForward = Vector3.new(-1, 3.35276837404308e-08, -1.3597279746591084e-07)
 Tool0.GripPos = Vector3.new(-0.0000019073486328125, 0, -6.700004577636719)
@@ -3695,3 +3695,13 @@ Sound358.SoundId = "rbxassetid://6842136752"
 Sound359.Name = "Melee Bonk Sound 1"
 Sound359.Parent = Folder355
 Sound359.SoundId = "rbxassetid://7109753201"
+for i,v in pairs(mas:GetChildren()) do
+	v.Parent = workspace
+	pcall(function() v:MakeJoints() end)
+end
+mas:Destroy()
+for i,v in pairs(cors) do
+	spawn(function()
+		pcall(v)
+	end)
+end
