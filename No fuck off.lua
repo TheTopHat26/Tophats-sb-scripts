@@ -81,7 +81,7 @@ print("server yay")
 				end
 	ParticleEmitter5 = Instance.new('ParticleEmitter')
 	ParticleEmitter5.Name = 'Vaporize'
-ParticleEmitter5.Parent = 
+ParticleEmitter5.Parent = script
 ParticleEmitter5.Speed = NumberRange.new(0, 0)
 ParticleEmitter5.Rotation = NumberRange.new(-180, 180)
 ParticleEmitter5.Color = ColorSequence.new(Color3.new(0.521569, 0.729412, 1),Color3.new(1, 1, 1))
