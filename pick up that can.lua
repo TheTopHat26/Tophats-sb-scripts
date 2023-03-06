@@ -49,7 +49,7 @@ tool.Activated:Connect(function()
 	if mouse.Target.Parent:FindFirstChildWhichIsA('Humanoid') then
 		local target = mouse.Target.Parent
 		local humanoid = target:FindFirstChildWhichIsA('Humanoid')
-				owner.Backpack.Can.RemoteEvent:FireServer(target)
+				script.Parent.RemoteEvent:FireServer(target)
 				print("fired ig")
 			task.wait(5)
 			de = false
@@ -65,64 +65,78 @@ Script4.Parent = Tool0
 
 NS([[local event = script.Parent.RemoteEvent
 
+ParticleEmitter5 = Instance.new('ParticleEmitter')
+ParticleEmitter5.Name = 'Vaporize'
+ParticleEmitter5.Parent = script
+ParticleEmitter5.Speed = NumberRange.new(0, 0)
+ParticleEmitter5.Rotation = NumberRange.new(-180, 180)
+ParticleEmitter5.Color = ColorSequence.new(Color3.new(0.521569, 0.729412, 1),Color3.new(1, 1, 1))
+ParticleEmitter5.LightEmission = 0.5
+ParticleEmitter5.Texture = 'rbxassetid://277855096'
+ParticleEmitter5.Transparency = NumberSequence.new(1,0,1)
+ParticleEmitter5.Size = NumberSequence.new(0.4375,1)
+ParticleEmitter5.Lifetime = NumberRange.new(0.5, 0.5)
+ParticleEmitter5.Rate = 150
+ParticleEmitter5.RotSpeed = NumberRange.new(800, 800)
+
 event.OnServerEvent:Connect(function(plr,target)
-print("server yay")
 	task.wait(.3)
-	local sound = script.Parent['heavy bass explosion']
-	sound.Volume = .3
+	local sound = script.Parent["heavy bass explosion"]
 	spawn(function()
 		sound:Play()
 		task.wait(8)
 		sound:Stop()
 	end)
 	for _,parts in pairs(target:GetDescendants()) do
-		if parts:IsA('BasePart') then
+		if parts:IsA("BasePart") then
 			if parts.Transparency < 1 then
-				local body_vel = Instance.new('BodyVelocity')
+				local body_vel = Instance.new("BodyVelocity")
 				body_vel.maxForce = Vector3.new(0, 200000, 0)
 				body_vel.velocity = Vector3.new(0, 1, 0)
 				body_vel.Parent = parts
-				local b_force = Instance.new('BodyForce')
+				local b_force = Instance.new("BodyForce")
 				b_force.force = Vector3.new(0, parts.Size.x * parts.Size.y * parts.Size.z * workspace.Gravity, 0) --196.2 is gravity
 				b_force.Parent = parts
 				parts.CanCollide = true
 				parts.Transparency = 0.4
 				parts.Color = Color3.fromRGB(0,0,0)
-				if parts:IsA('UnionOperation') then
+				if parts:IsA("UnionOperation") then
 					parts.UsePartColor = true
 				end
-	local particle = script.Vaporize:Clone()
+				pcall(function()
+					local particle = ParticleEmitter5:Clone()
 	particle.Enabled = true
 	particle.Parent = parts		
+				end)
+
 	spawn(function()
-		local tw = game:GetService('TweenService')
+		local tw = game:GetService("TweenService")
 		local inf = TweenInfo.new(5,Enum.EasingStyle.Sine)
 		local Goals = {Transparency = 1}
 		local anim = tw:Create(parts,inf,Goals)
 		anim:Play()
 		anim.Completed:Connect(function()
-			game:GetService('Debris'):AddItem(parts,0)
+			game:GetService("Debris"):AddItem(parts,0)
 		end)
 	end)
 	end
-	elseif parts:IsA('SpecialMesh') then
-	parts.TextureId = ''
+	elseif parts:IsA("SpecialMesh") then
+	parts.TextureId = ""
 else
-	if parts:IsA('BaseScript') then
+	if parts:IsA("BaseScript") then
 		parts:Destroy()
 	end
-	if parts:IsA('Pants') then
+	if parts:IsA("Pants") then
 		parts:Destroy()
 	end	
-	if parts:IsA('Shirt') then
+	if parts:IsA("Shirt") then
 		parts:Destroy()
 	end
-	if parts:IsA('Decal') then
+	if parts:IsA("Decal") then
 		parts:Destroy()
 	end				
 end
-
-
+end
 end)]],Tool0)
 
 for i,v in pairs(mas:GetChildren()) do
