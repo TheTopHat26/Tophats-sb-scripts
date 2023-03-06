@@ -121,7 +121,7 @@ else
 		parts:Destroy()
 	end				
 end
-	end
+
 
 end)]],Tool0)
 
