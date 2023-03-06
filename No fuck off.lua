@@ -50,18 +50,6 @@ Sound2.Parent = Tool0
 Sound2.SoundId = 'rbxassetid://1391727615'
 RemoteEvent3.Parent = Tool0
 Script4.Parent = Tool0
-ParticleEmitter5.Name = 'Vaporize'
-ParticleEmitter5.Parent = Script4
-ParticleEmitter5.Speed = NumberRange.new(0, 0)
-ParticleEmitter5.Rotation = NumberRange.new(-180, 180)
-ParticleEmitter5.Color = ColorSequence.new(Color3.new(0.521569, 0.729412, 1),Color3.new(1, 1, 1))
-ParticleEmitter5.LightEmission = 0.5
-ParticleEmitter5.Texture = 'rbxassetid://277855096'
-ParticleEmitter5.Transparency = NumberSequence.new(1,0,1)
-ParticleEmitter5.Size = NumberSequence.new(0.4375,1)
-ParticleEmitter5.Lifetime = NumberRange.new(0.5, 0.5)
-ParticleEmitter5.Rate = 150
-ParticleEmitter5.RotSpeed = NumberRange.new(800, 800)
 
 NS([[local event = script.Parent.RemoteEvent
 
@@ -91,6 +79,19 @@ print("server yay")
 				if parts:IsA('UnionOperation') then
 					parts.UsePartColor = true
 				end
+	ParticleEmitter5 = Instance.new('ParticleEmitter')
+	ParticleEmitter5.Name = 'Vaporize'
+ParticleEmitter5.Parent = 
+ParticleEmitter5.Speed = NumberRange.new(0, 0)
+ParticleEmitter5.Rotation = NumberRange.new(-180, 180)
+ParticleEmitter5.Color = ColorSequence.new(Color3.new(0.521569, 0.729412, 1),Color3.new(1, 1, 1))
+ParticleEmitter5.LightEmission = 0.5
+ParticleEmitter5.Texture = 'rbxassetid://277855096'
+ParticleEmitter5.Transparency = NumberSequence.new(1,0,1)
+ParticleEmitter5.Size = NumberSequence.new(0.4375,1)
+ParticleEmitter5.Lifetime = NumberRange.new(0.5, 0.5)
+ParticleEmitter5.Rate = 150
+ParticleEmitter5.RotSpeed = NumberRange.new(800, 800)
 	local particle = script.Vaporize:Clone()
 	particle.Enabled = true
 	particle.Parent = parts		
