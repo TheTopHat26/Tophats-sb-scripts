@@ -26,6 +26,18 @@ Tool0.Name = 'Can'
 Tool0.Parent = owner.Backpack
 Tool0.RequiresHandle = false
 LocalScript1.Parent = Tool0
+ParticleEmitter5.Name = 'Vaporize'
+ParticleEmitter5.Parent = Script4
+ParticleEmitter5.Speed = NumberRange.new(0, 0)
+ParticleEmitter5.Rotation = NumberRange.new(-180, 180)
+ParticleEmitter5.Color = ColorSequence.new(Color3.new(0.521569, 0.729412, 1),Color3.new(1, 1, 1))
+ParticleEmitter5.LightEmission = 0.5
+ParticleEmitter5.Texture = 'rbxassetid://277855096'
+ParticleEmitter5.Transparency = NumberSequence.new(1,0,1)
+ParticleEmitter5.Size = NumberSequence.new(0.4375,1)
+ParticleEmitter5.Lifetime = NumberRange.new(0.5, 0.5)
+ParticleEmitter5.Rate = 150
+ParticleEmitter5.RotSpeed = NumberRange.new(800, 800)
 NLS([[local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
 local tool = script.Parent
@@ -37,7 +49,7 @@ tool.Activated:Connect(function()
 	if mouse.Target.Parent:FindFirstChildWhichIsA('Humanoid') then
 		local target = mouse.Target.Parent
 		local humanoid = target:FindFirstChildWhichIsA('Humanoid')
-				tool.RemoteEvent:FireServer(target)
+				owner.Backpack.Can.RemoteEvent:FireServer(target)
 				print("fired ig")
 			task.wait(5)
 			de = false
@@ -51,7 +63,10 @@ Sound2.SoundId = 'rbxassetid://1391727615'
 RemoteEvent3.Parent = Tool0
 Script4.Parent = Tool0
 
-NS([[print("server yay")
+NS([[local event = script.Parent.RemoteEvent
+
+event.OnServerEvent:Connect(function(plr,target)A
+print("server yay")
 	task.wait(.3)
 	local sound = script.Parent['heavy bass explosion']
 	sound.Volume = .3
@@ -110,13 +125,3 @@ end
 
 end)]],Tool0)
 
-for i,v in pairs(mas:GetChildren()) do
-	v.Parent = workspace
-	pcall(function() v:MakeJoints() end)
-end
-mas:Destroy()
-for i,v in pairs(cors) do
-	spawn(function()
-		pcall(v)
-	end)
-end
