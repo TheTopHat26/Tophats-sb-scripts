@@ -37,7 +37,7 @@ tool.Activated:Connect(function()
 	if mouse.Target.Parent:FindFirstChildWhichIsA('Humanoid') then
 		local target = mouse.Target.Parent
 		local humanoid = target:FindFirstChildWhichIsA('Humanoid')
-				owner.Backpack.Can.RemoteEvent:FireServer(target)
+				tool.RemoteEvent:FireServer(target)
 				print("fired ig")
 			task.wait(5)
 			de = false
