@@ -92,7 +92,7 @@ ParticleEmitter5.Size = NumberSequence.new(0.4375,1)
 ParticleEmitter5.Lifetime = NumberRange.new(0.5, 0.5)
 ParticleEmitter5.Rate = 150
 ParticleEmitter5.RotSpeed = NumberRange.new(800, 800)
-	local particle = script.Vaporize:Clone()
+	local particle = ParticleEmitter5:Clone()
 	particle.Enabled = true
 	particle.Parent = parts		
 	spawn(function()
