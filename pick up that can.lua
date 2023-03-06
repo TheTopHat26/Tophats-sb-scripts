@@ -65,7 +65,7 @@ Script4.Parent = Tool0
 
 NS([[local event = script.Parent.RemoteEvent
 
-event.OnServerEvent:Connect(function(plr,target)A
+event.OnServerEvent:Connect(function(plr,target)
 print("server yay")
 	task.wait(.3)
 	local sound = script.Parent['heavy bass explosion']
@@ -121,7 +121,7 @@ else
 		parts:Destroy()
 	end				
 end
+	end
 end
 
 end)]],Tool0)
-
