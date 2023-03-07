@@ -116,9 +116,10 @@ event.OnServerEvent:Connect(function(plr,target)
 
 	spawn(function()
 		local tw = game:GetService("TweenService")
-		local inf = TweenInfo.new(2,Enum.EasingStyle.Sine)
+		local inf = TweenInfo.new(1,Enum.EasingStyle.Sine)
 		local Goals = {Transparency = 1}
 		local anim = tw:Create(parts,inf,Goals)
+	task.wait(2)
 		anim:Play()
 		anim.Completed:Connect(function()
 			game:GetService("Debris"):AddItem(parts,0)
