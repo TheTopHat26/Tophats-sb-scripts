@@ -103,7 +103,6 @@ event.OnServerEvent:Connect(function(plr,target)
 				b_force.force = Vector3.new(0, parts.Size.x * parts.Size.y * parts.Size.z * workspace.Gravity, 0) --196.2 is gravity
 				b_force.Parent = parts
 				parts.CanCollide = true
-				parts.Transparency = 0.4
 				parts.Color = Color3.fromRGB(0,0,0)
 				if parts:IsA("UnionOperation") then
 					parts.UsePartColor = true
