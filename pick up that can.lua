@@ -87,6 +87,11 @@ event.OnServerEvent:Connect(function(plr,target)
 		task.wait(8)
 		sound:Stop()
 	end)
+	spawn(function()
+	while wait(.01) do
+	target:FindFirstChildWhichIsA("Humanoid").WalkSpeed = 0
+	end
+	end)
 	for _,parts in pairs(target:GetDescendants()) do
 		if parts:IsA("BasePart") then
 			if parts.Transparency < 1 then
