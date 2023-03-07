@@ -95,6 +95,7 @@ event.OnServerEvent:Connect(function(plr,target)
 	for _,parts in pairs(target:GetDescendants()) do
 		if parts:IsA("BasePart") then
 			if parts.Transparency < 1 then
+	
 				local body_vel = Instance.new("BodyVelocity")
 				body_vel.maxForce = Vector3.new(0, 200000, 0)
 				body_vel.velocity = Vector3.new(0, 1, 0)
@@ -107,6 +108,7 @@ event.OnServerEvent:Connect(function(plr,target)
 				if parts:IsA("UnionOperation") then
 					parts.UsePartColor = true
 				end
+	parts.Transparency = 0
 				pcall(function()
 					local particle = ParticleEmitter5:Clone()
 	particle.Enabled = true
