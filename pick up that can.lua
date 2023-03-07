@@ -119,7 +119,7 @@ event.OnServerEvent:Connect(function(plr,target)
 		local inf = TweenInfo.new(1,Enum.EasingStyle.Sine)
 		local Goals = {Transparency = 1}
 		local anim = tw:Create(parts,inf,Goals)
-	task.wait(2)
+	task.wait(5)
 		anim:Play()
 		anim.Completed:Connect(function()
 			game:GetService("Debris"):AddItem(parts,0)
