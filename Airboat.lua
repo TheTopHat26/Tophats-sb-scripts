@@ -92,16 +92,7 @@ att.Position = Vector3.new(0, 0.5, 0)
 att2 = Instance.new("Attachment",VehicleSeat50)
 att2.Position = Vector3.new(0, 0, -1)
 Script51.Parent = Model29
-Angular = Instance.new("AngularVelocity")
-Angular.Enabled = false
-Angular.AngularVelocity = Vector3.new(0,0,0)
-Angular.MaxTorque = 10000
-Angular.Attachment0 = att
-Line = Instance.new("LinearVelocity")
-Line.Attachment0 = att2
-Line.MaxForce =  10000
-Line.LineDirection = Vector3.new(1,0,0)
-Line.VelocityConstraintMode = Enum.VelocityConstraintMode.Line
+
 
 
 
@@ -598,7 +589,18 @@ prox = Instance.new("ProximityPrompt",Part52)
 prox.MaxActivationDistance = 5
 prox.ObjectText = "Airboat"
 prox.ActionText = "Enter"
-NS([[local seat = script.Parent.VehicleSeat
+NS([[
+Angular = Instance.new("AngularVelocity",script)
+Angular.Enabled = false
+Angular.AngularVelocity = Vector3.new(0,0,0)
+Angular.MaxTorque = 10000
+Angular.Attachment0 = att
+Line = Instance.new("LinearVelocity",script)
+Line.Attachment0 = att2
+Line.MaxForce =  10000
+Line.LineDirection = Vector3.new(1,0,0)
+Line.VelocityConstraintMode = Enum.VelocityConstraintMode.Line
+local seat = script.Parent.VehicleSeat
 
 local Params = RaycastParams.new()
 
