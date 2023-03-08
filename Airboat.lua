@@ -589,19 +589,20 @@ prox = Instance.new("ProximityPrompt",Part52)
 prox.MaxActivationDistance = 5
 prox.ObjectText = "Airboat"
 prox.ActionText = "Enter"
-NS([[
-Angular = Instance.new("AngularVelocity",script)
+Angular = Instance.new("AngularVelocity",VehicleSeat50)
 Angular.Enabled = false
 Angular.AngularVelocity = Vector3.new(0,0,0)
 Angular.MaxTorque = 10000
 Angular.Attachment0 = att
 Angular.Parent = script
-Line = Instance.new("LinearVelocity",script)
+Line = Instance.new("LinearVelocity",VehicleSeat50)
 Line.Parent = script
 Line.Attachment0 = att2
 Line.MaxForce =  10000
 Line.LineDirection = Vector3.new(1,0,0)
 Line.VelocityConstraintMode = Enum.VelocityConstraintMode.Line
+NS([[
+
 
 local seat = script.Parent.VehicleSeat
 
@@ -611,8 +612,8 @@ Params.FilterDescendantsInstances = {workspace.Terrain}
 Params.FilterType = Enum.RaycastFilterType.Whitelist
 
 seat.Changed:Connect(function()
-	script.AngularVelocity.AngularVelocity = Vector3.new(0,-1 * seat.Steer,0)
-	script.LinearVelocity.LineVelocity = 50*seat.Throttle
+	seat.AngularVelocity.AngularVelocity = Vector3.new(0,-1 * seat.Steer,0)
+	seat.LinearVelocity.LineVelocity = 50*seat.Throttle
 end)
 
 spawn(function()
@@ -621,12 +622,12 @@ spawn(function()
 		ePos = seat.Position - Vector3.new(0,15,0)
 		local ray = workspace:Raycast(sPos,ePos - sPos,Params)
 		if ray and ray.Material == Enum.Material.Water then
-			script.AngularVelocity.Enabled = true
-			script.LinearVelocity.Enabled = true
-			script.LinearVelocity.LineDirection = seat.CFrame.LookVector
+			seat.AngularVelocity.Enabled = true
+			seat.LinearVelocity.Enabled = true
+			seat.LinearVelocity.LineDirection = seat.CFrame.LookVector
 		else
-			script.AngularVelocity.Enabled = false
-			script.LinearVelocity.Enabled = false
+			seat.AngularVelocity.Enabled = false
+			seat.LinearVelocity.Enabled = false
 			
 
 			local backLeft = script.Parent.BackLeft
