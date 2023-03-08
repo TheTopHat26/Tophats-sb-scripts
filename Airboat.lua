@@ -104,58 +104,7 @@ Line.LineDirection = Vector3.new(1,0,0)
 Line.VelocityConstraintMode = Enum.VelocityConstraintMode.Line
 
 
-NS([[
 
-local seat = script.Parent.VehicleSeat
-
-local Params = RaycastParams.new()
-
-Params.FilterDescendantsInstances = {workspace.Terrain}
-Params.FilterType = Enum.RaycastFilterType.Whitelist
-
-seat.Changed:Connect(function()
-	script.AngularVelocity.AngularVelocity = Vector3.new(0,-1 * seat.Steer,0)
-	script.LinearVelocity.LineVelocity = 50*seat.Throttle
-end)
-
-spawn(function()
-	while task.wait() do
-		sPos = seat.Position * Vector3.new(0,15,0)
-		ePos = seat.Position - Vector3.new(0,15,0)
-		local ray = workspace:Raycast(sPos,ePos - sPos,Params)
-		if ray and ray.Material == Enum.Material.Water then
-			script.AngularVelocity.Enabled = true
-			script.LinearVelocity.Enabled = true
-			script.LinearVelocity.LineDirection = seat.CFrame.LookVector
-		else
-			script.AngularVelocity.Enabled = false
-			script.LinearVelocity.Enabled = false
-			
-
-			local backLeft = script.Parent.BackLeft
-			local backRight = script.Parent.BackRight
-
-			local frontLeft = script.Parent.FrontLeft
-			local frontRight = script.Parent.FrontRight
-
-			local steerAngle = 45
-			local speed = 30
-
-			seat:GetPropertyChangedSignal("Steer"):Connect(function()
-				frontLeft.PartB.SteeringConstraint.TargetAngle = steerAngle * seat.Steer
-				frontRight.PartB.SteeringConstraint.TargetAngle = steerAngle * seat.Steer
-			end)
-
-			seat:GetPropertyChangedSignal("Throttle"):Connect(function()
-				frontLeft.Wheel.WheelConstraint.AngularVelocity = speed * seat.Throttle
-				frontRight.Wheel.WheelConstraint.AngularVelocity = speed * -seat.Throttle
-
-				backLeft.Wheel.WheelConstraint.AngularVelocity = speed * seat.Throttle
-				backRight.Wheel.WheelConstraint.AngularVelocity = speed * -seat.Throttle
-			end)
-		end
-	end
-end)]],prox)
 VehicleSeat50.Parent = Model29
 VehicleSeat50.CFrame = CFrame.new(-44.8354111, 6.00000668, -87.8596573, -1, 0, 0, 0, 1, 0, 0, 0, -1)
 VehicleSeat50.Orientation = Vector3.new(0, 180, 0)
@@ -734,8 +683,9 @@ spawn(function()
 	end
 end)]],Model29)
 
-table.insert(cors,sandbox(Script54,function()
-local prox = script.Parent
+
+
+NS([[local prox = script.Parent
 local airboat = script.Parent.Parent.Parent
 local using = false
 local seat = airboat.VehicleSeat
@@ -766,9 +716,7 @@ prox.Triggered:Connect(function(plr)
 			end)
 		end)
 	end
-end)
-end))
-
+end)]],prox)
 for i,v in pairs(mas:GetChildren()) do
 	v.Parent = script
 	pcall(function() v:MakeJoints() end)
