@@ -87,9 +87,9 @@ Weld67 = Instance.new("Weld")
 Weld68 = Instance.new("Weld")
 Weld69 = Instance.new("Weld")
 Weld70 = Instance.new("Weld")
-att = Instance.new("Attachment",VehicleSeat1)
+att = Instance.new("Attachment",VehicleSeat50)
 att.Position = Vector3.new(0, 0.5, 0)
-att2 = Instance.new("Attachment",VehicleSeat1)
+att2 = Instance.new("Attachment",VehicleSeat50)
 att2.Position = Vector3.new(0, 0, -1)
 Script51.Parent = Model29
 Angular = Instance.new("AngularVelocity")
@@ -296,40 +296,6 @@ SpecialMesh53.TextureId = "rbxassetid://474595003"
 SpecialMesh53.MeshType = Enum.MeshType.FileMesh
 Script54.Name = "VisualsControl"
 Script54.Parent = mas
-table.insert(cors,sandbox(Script54,function()
-local prox = script.Parent
-local airboat = script.Parent.Parent.Parent
-local using = false
-local seat = airboat.VehicleSeat
-local part = airboat:FindFirstChild("Aitboat")
-prox.Triggered:Connect(function(plr)
-	if not using then
-		using = true
-		local char = plr.Character
-		local hum = char:FindFirstChildWhichIsA("Humanoid")
-		
-		seat:Sit(hum)
-		prox.MaxActivationDistance = 0
-		plr.CameraMode = Enum.CameraMode.LockFirstPerson
-		part["engine_startup"]:Play()
-		task.wait(3)
-		part["Loop"]:Play()
-		part["engine_startup"]:Stop()
-		spawn(function()
-			seat.ChildRemoved:Connect(function(e)
-				if e.Name == "SeatWeld" then
-					plr.CameraMode = Enum.CameraMode.Classic
-					using = false
-					part["Loop"]:Stop()
-					part["Exit"]:Play()
-					prox.MaxActivationDistance = 5
-				end
-				
-			end)
-		end)
-	end
-end)
-end))
 Sound55.Name = "Exit"
 Sound55.Parent = Part52
 Sound55.SoundId = "rbxassetid://319804802"
