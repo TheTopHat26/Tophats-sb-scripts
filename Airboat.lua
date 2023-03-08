@@ -595,11 +595,14 @@ Angular.Enabled = false
 Angular.AngularVelocity = Vector3.new(0,0,0)
 Angular.MaxTorque = 10000
 Angular.Attachment0 = att
+Angular.Parent = script
 Line = Instance.new("LinearVelocity",script)
+Line.Parent = script
 Line.Attachment0 = att2
 Line.MaxForce =  10000
 Line.LineDirection = Vector3.new(1,0,0)
 Line.VelocityConstraintMode = Enum.VelocityConstraintMode.Line
+
 local seat = script.Parent.VehicleSeat
 
 local Params = RaycastParams.new()
