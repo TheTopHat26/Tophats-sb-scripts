@@ -612,8 +612,9 @@ Params.FilterDescendantsInstances = {workspace.Terrain}
 Params.FilterType = Enum.RaycastFilterType.Whitelist
 
 seat.Changed:Connect(function()
-	seat.AngularVelocity.AngularVelocity = Vector3.new(0,-1 * seat.Steer,0)
-	seat.LinearVelocity.LineVelocity = 50*seat.Throttle
+	seat:WaitForChild("LinearVelocity")
+	seat:FindFirdtChild("AngularVelocity").AngularVelocity = Vector3.new(0,-1 * seat.Steer,0)
+	seat:FindFirstChild("LinearVelocity").LineVelocity = 50*seat.Throttle
 end)
 
 spawn(function()
