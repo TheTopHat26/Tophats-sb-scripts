@@ -87,10 +87,7 @@ Weld67 = Instance.new("Weld")
 Weld68 = Instance.new("Weld")
 Weld69 = Instance.new("Weld")
 Weld70 = Instance.new("Weld")
-att = Instance.new("Attachment",VehicleSeat50)
-att.Position = Vector3.new(0, 0.5, 0)
-att2 = Instance.new("Attachment",VehicleSeat50)
-att2.Position = Vector3.new(0, 0, -1)
+
 Script51.Parent = Model29
 
 
@@ -589,6 +586,13 @@ prox = Instance.new("ProximityPrompt",Part52)
 prox.MaxActivationDistance = 5
 prox.ObjectText = "Airboat"
 prox.ActionText = "Enter"
+
+NS([[
+
+att = Instance.new("Attachment",VehicleSeat50)
+att.Position = Vector3.new(0, 0.5, 0)
+att2 = Instance.new("Attachment",VehicleSeat50)
+att2.Position = Vector3.new(0, 0, -1)
 Angular = Instance.new("AngularVelocity",VehicleSeat50)
 Angular.Enabled = false
 Angular.AngularVelocity = Vector3.new(0,0,0)
@@ -601,8 +605,6 @@ Line.Attachment0 = att2
 Line.MaxForce =  10000
 Line.LineDirection = Vector3.new(1,0,0)
 Line.VelocityConstraintMode = Enum.VelocityConstraintMode.Line
-NS([[
-
 
 local seat = script.Parent.VehicleSeat
 
@@ -612,9 +614,9 @@ Params.FilterDescendantsInstances = {workspace.Terrain}
 Params.FilterType = Enum.RaycastFilterType.Whitelist
 
 seat.Changed:Connect(function()
-	seat:WaitForChild("LinearVelocity")
-	seat:FindFirdtChild("AngularVelocity").AngularVelocity = Vector3.new(0,-1 * seat.Steer,0)
-	seat:FindFirstChild("LinearVelocity").LineVelocity = 50*seat.Throttle
+
+	Angular.AngularVelocity = Vector3.new(0,-1 * seat.Steer,0)
+	Line.LineVelocity = 50*seat.Throttle
 end)
 
 spawn(function()
@@ -623,12 +625,12 @@ spawn(function()
 		ePos = seat.Position - Vector3.new(0,15,0)
 		local ray = workspace:Raycast(sPos,ePos - sPos,Params)
 		if ray and ray.Material == Enum.Material.Water then
-			seat.AngularVelocity.Enabled = true
-			seat.LinearVelocity.Enabled = true
-			seat.LinearVelocity.LineDirection = seat.CFrame.LookVector
+			Angular.Enabled = true
+			Line.Enabled = true
+			Line.LineDirection = seat.CFrame.LookVector
 		else
-			seat.AngularVelocity.Enabled = false
-			seat.LinearVelocity.Enabled = false
+			Angular.Enabled = false
+			Line.Enabled = false
 			
 
 			local backLeft = script.Parent.BackLeft
