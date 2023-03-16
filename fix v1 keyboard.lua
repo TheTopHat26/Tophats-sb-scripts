@@ -1913,7 +1913,7 @@ NS([[local Debris = game:GetService("Debris")
 					hithum:TakeDamage(25)
 					script.Parent.hit:Play()
 					spawn(function()
-						for i = 1,25 do
+						for i = 1,7 do
 							local bosses = script.Parent.Keys:GetChildren()
 							local randomboss = bosses[math.random(1, #bosses)]
 							randomboss.Parent = game.Workspace
