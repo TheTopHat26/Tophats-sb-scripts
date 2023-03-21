@@ -269,14 +269,13 @@ RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire
 
 			if (Do.ShootSound ~= "" or Do.ShootSound ~= nil) then -- fire visualiser
 				local Sound = Instance.new("Sound")
-				ShootPart.MuzzleEffect.Enabled = true
 				Sound.SoundId = Do.ShootSound
 				Sound.Volume = .65
 				Sound.PlayOnRemove = true
 				Sound.Parent = Handle
 				Sound:Destroy()
 				task.wait(.2)
-				ShootPart.MuzzleEffect.Enabled = false
+
 				local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
 			end
 
