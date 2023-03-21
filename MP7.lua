@@ -37,6 +37,37 @@ RemoteEvent1.Parent = Tool0
 Script2.Parent = Tool0
 att = Instance.new("Attachment",Part7)
 att.Position = Vector3.new(0, 0.386, 2.024)
+RemoteEvent5.Name = "ReloadE"
+RemoteEvent5.Parent = Tool0
+Sound6.Name = "Nil"
+Sound6.Parent = Tool0
+Sound6.SoundId = "rbxassetid://10532916844"
+Part7.Name = "Handle"
+Part7.Parent = Tool0
+Part7.CFrame = CFrame.new(-24.1999912, 1.25000405, 5.10001135, -0.999997318, 0, 1.49011257e-08, 0, 1, 0, -1.49011257e-08, 0, -0.999997318)
+Part7.Orientation = Vector3.new(0, 180, 0)
+Part7.Position = Vector3.new(-24.19999122619629, 1.2500040531158447, 5.100011348724365)
+Part7.Rotation = Vector3.new(-180, 0, -180)
+Part7.Size = Vector3.new(1.8000000715255737, 2.0999999046325684, 4.599999904632568)
+Part7.BottomSurface = Enum.SurfaceType.Smooth
+Part7.TopSurface = Enum.SurfaceType.Smooth
+SpecialMesh8.Parent = Part7
+SpecialMesh8.MeshId = "rbxassetid://12858378834"
+SpecialMesh8.Scale = Vector3.new(1.2000000476837158, 1.2000000476837158, 1.2000000476837158)
+SpecialMesh8.TextureId = "rbxassetid://12858404769"
+SpecialMesh8.MeshType = Enum.MeshType.FileMesh
+ParticleEmitter9.Name = "MuzzleEffect"
+ParticleEmitter9.Parent = mas
+ParticleEmitter9.Speed = NumberRange.new(0, 0)
+ParticleEmitter9.Enabled = false
+ParticleEmitter9.LightEmission = 0.4000000059604645
+ParticleEmitter9.Texture = "rbxassetid://421803006"
+ParticleEmitter9.Transparency = NumberSequence.new(1,0,0,1)
+ParticleEmitter9.Size = NumberSequence.new(0,1,1.5,0.125)
+ParticleEmitter9.EmissionDirection = Enum.NormalId.Front
+ParticleEmitter9.Lifetime = NumberRange.new(0.10000000149011612, 0.10000000149011612)
+ParticleEmitter9.LockedToPart = true
+ParticleEmitter9.Rate = 500
 NS([[local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
 
@@ -553,37 +584,7 @@ end
 
 -- Created by Quenty (@Quenty, follow me on twitter).
 ]=],Tool0)
-RemoteEvent5.Name = "ReloadE"
-RemoteEvent5.Parent = Tool0
-Sound6.Name = "Nil"
-Sound6.Parent = Tool0
-Sound6.SoundId = "rbxassetid://10532916844"
-Part7.Name = "Handle"
-Part7.Parent = Tool0
-Part7.CFrame = CFrame.new(-24.1999912, 1.25000405, 5.10001135, -0.999997318, 0, 1.49011257e-08, 0, 1, 0, -1.49011257e-08, 0, -0.999997318)
-Part7.Orientation = Vector3.new(0, 180, 0)
-Part7.Position = Vector3.new(-24.19999122619629, 1.2500040531158447, 5.100011348724365)
-Part7.Rotation = Vector3.new(-180, 0, -180)
-Part7.Size = Vector3.new(1.8000000715255737, 2.0999999046325684, 4.599999904632568)
-Part7.BottomSurface = Enum.SurfaceType.Smooth
-Part7.TopSurface = Enum.SurfaceType.Smooth
-SpecialMesh8.Parent = Part7
-SpecialMesh8.MeshId = "rbxassetid://12858378834"
-SpecialMesh8.Scale = Vector3.new(1.2000000476837158, 1.2000000476837158, 1.2000000476837158)
-SpecialMesh8.TextureId = "rbxassetid://12858404769"
-SpecialMesh8.MeshType = Enum.MeshType.FileMesh
-ParticleEmitter9.Name = "MuzzleEffect"
-ParticleEmitter9.Parent = mas
-ParticleEmitter9.Speed = NumberRange.new(0, 0)
-ParticleEmitter9.Enabled = false
-ParticleEmitter9.LightEmission = 0.4000000059604645
-ParticleEmitter9.Texture = "rbxassetid://421803006"
-ParticleEmitter9.Transparency = NumberSequence.new(1,0,0,1)
-ParticleEmitter9.Size = NumberSequence.new(0,1,1.5,0.125)
-ParticleEmitter9.EmissionDirection = Enum.NormalId.Front
-ParticleEmitter9.Lifetime = NumberRange.new(0.10000000149011612, 0.10000000149011612)
-ParticleEmitter9.LockedToPart = true
-ParticleEmitter9.Rate = 500
+
 for i,v in pairs(mas:GetChildren()) do
 	v.Parent = workspace
 	pcall(function() v:MakeJoints() end)
