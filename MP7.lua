@@ -68,22 +68,8 @@ ParticleEmitter9.EmissionDirection = Enum.NormalId.Front
 ParticleEmitter9.Lifetime = NumberRange.new(0.10000000149011612, 0.10000000149011612)
 ParticleEmitter9.LockedToPart = true
 ParticleEmitter9.Rate = 500
-NS([[local TweenService = game:GetService("TweenService")
-local Debris = game:GetService("Debris")
 
-local Tool = script.Parent
-local Handle = Tool:FindFirstChild("Handle")
-local ShootPart = Handle:FindFirstChild("Attachment")
-local RemoteEvent = Tool:FindFirstChild("RemoteEvent")
-local OnCooldown = false
-
-Tool.Equipped:Once(function()
-	local Ninemm = Instance.new("NumberValue",game.ReplicatedStorage)
-	Ninemm.Name = tostring("9mm")
-	Ninemm.Value = math.huge
-end)
-
-Tool.Unequipped:Connect(function()
+local unusedcode = [[Tool.Unequipped:Connect(function()
 	print("Reverting")
 	local animator = Instance.new("Animator",Tool.Parent:FindFirstChildWhichIsA("Humanoid"))
 	local left:Motor6D = Tool.Parent:FindFirstChild("Torso")["Left Shoulder"]
@@ -100,7 +86,24 @@ Tool.Equipped:Connect(function()
 	right.C0 = right.C0 * CFrame.new(0.150, -0.391, -0.300) * CFrame.Angles(math.rad(-10.6), math.rad(-0.172), math.rad(96.543))
 	end)
 	local reloading = false
+end)]]
+
+NS([[local TweenService = game:GetService("TweenService")
+local Debris = game:GetService("Debris")
+
+local Tool = script.Parent
+local Handle = Tool:FindFirstChild("Handle")
+local ShootPart = Handle:FindFirstChild("Attachment")
+local RemoteEvent = Tool:FindFirstChild("RemoteEvent")
+local OnCooldown = false
+
+Tool.Equipped:Once(function()
+	local Ninemm = Instance.new("NumberValue",game.ReplicatedStorage)
+	Ninemm.Name = tostring("9mm")
+	Ninemm.Value = math.huge
 end)
+
+
 
 local Do = {
 	Damage = 10;
