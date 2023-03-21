@@ -69,24 +69,7 @@ ParticleEmitter9.Lifetime = NumberRange.new(0.10000000149011612, 0.1000000014901
 ParticleEmitter9.LockedToPart = true
 ParticleEmitter9.Rate = 500
 
-local unusedcode = [[Tool.Unequipped:Connect(function()
-	print("Reverting")
-	local animator = Instance.new("Animator",Tool.Parent:FindFirstChildWhichIsA("Humanoid"))
-	local left:Motor6D = Tool.Parent:FindFirstChild("Torso")["Left Shoulder"]
-	local right:Motor6D = Tool.Parent:FindFirstChild("Torso")["Right Shoulder"]
-	left.C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(0))
-	right.C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(math.rad(0), math.rad(-90), math.rad(0))
-end)
 
-Tool.Equipped:Connect(function()
-	Tool.Parent:FindFirstChildWhichIsA("Humanoid"):FindFirstChildWhichIsA("Animator"):Destroy()
-	local left:Motor6D = Tool.Parent:FindFirstChild("Torso")["Left Shoulder"]
-	local right:Motor6D = Tool.Parent:FindFirstChild("Torso")["Right Shoulder"]
-	left.C0 = left.C0 * CFrame.new(-1.126, -0.651, -1.288) * CFrame.Angles(math.rad(-18.793), math.rad(-20.741), math.rad(-133.9))
-	right.C0 = right.C0 * CFrame.new(0.150, -0.391, -0.300) * CFrame.Angles(math.rad(-10.6), math.rad(-0.172), math.rad(96.543))
-	end)
-	local reloading = false
-end)]]
 
 NS([[local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
