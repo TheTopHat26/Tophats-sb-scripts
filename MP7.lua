@@ -268,7 +268,7 @@ local Player = Players.LocalPlayer
 local Mouse = Player:GetMouse()
 
 local Tool = script.Parent
-local RemoteEvent:RemoteEvent = script.Parent.RemoteEvent
+local RemoteEvent = script.Parent.RemoteEvent
 local Reload = script.Parent:WaitForChild("ReloadE")
 
 
