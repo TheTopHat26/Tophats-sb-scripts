@@ -100,6 +100,7 @@ Tool.Equipped:Connect(function()
 	right.C0 = right.C0 * CFrame.new(0.150, -0.391, -0.300) * CFrame.Angles(math.rad(-10.6), math.rad(-0.172), math.rad(96.543))
 	end)
 	local reloading = false
+end)
 
 local Do = {
 	Damage = 10;
