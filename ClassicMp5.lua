@@ -33,7 +33,7 @@ Part6.Name = "Handle"
 Part6.Parent = Tool0
 Part6.CFrame = CFrame.new(36.6875763, 0.664046168, -45.5578003, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 Part6.Orientation = Vector3.new(0, 90, 0)
-Part6.Position = Vector3.new(36.68757629394531, 2, -45.55780029296875)
+Part6.Position = Vector3.new(36.68757629394531, 0.6640461683273315, -45.55780029296875)
 Part6.Rotation = Vector3.new(0, 90, 0)
 Part6.Color = Color3.new(0.105882, 0.164706, 0.207843)
 Part6.Size = Vector3.new(1, 1, 2)
@@ -78,291 +78,291 @@ Part17.TopSurface = Enum.SurfaceType.Smooth
 WeldConstraint18.Parent = Tool0
 WeldConstraint18.Part0 = Part17
 WeldConstraint18.Part1 = Part6
+Part6.Anchored = false
 local att = Instance.new("Attachment",Part6)
 att.Position = Vector3.new(0, 0.413, -1.51)
-Part6.Anchored = false
-NS([=[
-local TweenService = game:GetService("TweenService")
-local Debris = game:GetService("Debris")
+--NS([=[
+--local TweenService = game:GetService("TweenService")
+--local Debris = game:GetService("Debris")
 
-local Tool = script.Parent
-local Handle = Tool:FindFirstChild("Handle")
-local ShootPart = Handle:FindFirstChild("Attachment")
-local RemoteEvent = Tool:FindFirstChild("RemoteEvent")
-local OnCooldown = false
+--local Tool = script.Parent
+--local Handle = Tool:FindFirstChild("Handle")
+--local ShootPart = Handle:FindFirstChild("Attachment")
+--local RemoteEvent = Tool:FindFirstChild("RemoteEvent")
+--local OnCooldown = false
 
-Tool.Equipped:Once(function()
-	local Ninemm = Instance.new("NumberValue",game.ReplicatedStorage)
-	Ninemm.Name = tostring("9mm")
-	Ninemm.Value = math.huge
-end)
-
-local reloading = false
-
-local Do = {
-	Damage = 10;
-	Cooldown = 0;
-	Visualize = true;
-	ShootSound = "rbxassetid://2697431";
-	ReloadSound = "rbxassetid://2697432";
-	MaxAmmo = 30;
-	ReserveAmmo = game.ReplicatedStorage:WaitForChild("9mm").Value;
-	Ammo = 30;
-}
-
-function CalculateNeededAmmo(Ammo)
-	local x = Do.MaxAmmo - Ammo
-	return x
-end
-
-local pressed = false
--- thanks to rufus14 for the muzzle flash
-
-tween = function(speed, easingstyle, easingdirection, loopcount, WHAT, goal)
-	local info = TweenInfo.new(
-		speed,
-		easingstyle,
-		easingdirection,
-		loopcount
-	)
-	local goals = goal
-	local anim = game:GetService("TweenService"):Create(WHAT, info, goals)
-	anim:Play()
-end
-
-makepart = function(parent, size, cf, anchored, cancol, name) --spawnlocation because spawns have less limit on vsb
-	local part = Instance.new("SpawnLocation")
-	part.Enabled = false
-	part.Anchored = anchored
-	part.CanCollide = cancol
-	part.Name = name or "Part"
-	part.Size = size
-	part.CFrame = cf
-	part.Parent = parent
-	part:BreakJoints()
-	return part
-end
-
-function reload(ifpressedR) -- realod function no if realoading triggers are placed
-	if game.ReplicatedStorage:FindFirstChild("9mm").Value > 0 and Do.Ammo == 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value >= Do.MaxAmmo then -- check if the player has spare ammo (reseve)
-		print("No ammo")
-	local sound = Instance.new("Sound",workspace) -- sound and anim creation
-	sound.SoundId = Do.ReloadSound
-	sound:Play()
-
-	local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
-
-
-		sound.Ended:Connect(function() -- if the sound ended gives the changes the gun ammo count
-			Do.Ammo = Do.MaxAmmo -- ammo count change
-			game.ReplicatedStorage:FindFirstChild("9mm").Value -= Do.MaxAmmo -- removes ammo from reseve
-			print(Do.Ammo)
-			reloading = false  -- The bool "realoding " if off
-	end)
-	elseif game.ReplicatedStorage:FindFirstChild("9mm").Value < Do.MaxAmmo and  game.ReplicatedStorage:FindFirstChild("9mm").Value > 0 and Do.Ammo ~= 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value >= Do.MaxAmmo then -- TODO: Fix
-		print("Less than 30,9mm biger than zero,Gun ammo = 0")
-		print(game.ReplicatedStorage:FindFirstChild("9mm").Value)
-		local sound = Instance.new("Sound",workspace)
-		sound.SoundId = Do.ReloadSound
-		sound:Play()
-		local animid = nil
-		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
-
-		sound.Ended:Connect(function()
-			local x = CalculateNeededAmmo(Do.Ammo) -- POSSIBLE MATH ERROR
-			print(x.."  is x")
-			Do.Ammo = Do.MaxAmmo
-			game.ReplicatedStorage:FindFirstChild("9mm").Value =- x
-			print(Do.Ammo)
-			reloading = false
-		end)
-	elseif  game.ReplicatedStorage:FindFirstChild("9mm").Value ~= Do.MaxAmmo and Do.Ammo ~= Do.MaxAmmo and  Do.Ammo > 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value >= Do.MaxAmmo then
-		print("9mm is diffrent than 30,Gun ammo diffrent then 30 9mm is bigger then 30")
-		print(game.ReplicatedStorage:FindFirstChild("9mm").Value)
-		local sound = Instance.new("Sound",workspace)
-		sound.SoundId = Do.ReloadSound
-		sound:Play()
-		local animid = nil
-		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
-
-		sound.Ended:Connect(function()
-			local x = CalculateNeededAmmo(Do.Ammo) -- POSSIBLE MATH ERROR
-			print(x.."  is x")
-			Do.Ammo = Do.MaxAmmo
-			game.ReplicatedStorage:FindFirstChild("9mm").Value = game.ReplicatedStorage:FindFirstChild("9mm").Value - x
-			print(Do.Ammo)
-			reloading = false
-		end)
-	elseif  game.ReplicatedStorage:FindFirstChild("9mm").Value < Do.MaxAmmo and Do.Ammo ~= Do.MaxAmmo and Do.Ammo > 0 then
-		if ifpressedR == true then
-			if pressed == false then
-				pressed  = true
-				print("Dump")
-				local sound = Instance.new("Sound",workspace)
-				sound.SoundId = Do.ReloadSound
-				sound:Play()
-				local animid = nil
-				local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
-
-				sound.Ended:Connect(function()
-					game.ReplicatedStorage:FindFirstChild("9mm").Value = Do.Ammo
-					Do.Ammo = game.ReplicatedStorage:FindFirstChild("9mm").Value
-					print(Do.Ammo)
-					reloading = false
-				end)
-			end
-		end
-		
-	elseif  game.ReplicatedStorage:FindFirstChild("9mm").Value <= Do.MaxAmmo and Do.Ammo == 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value ~= 0 then
-		print("Dump all")
-		local sound = Instance.new("Sound",workspace)
-		sound.SoundId = Do.ReloadSound
-		sound:Play()
-		local animid = nil
-		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
-	
-		sound.Ended:Connect(function()
-			task.spawn(function()
-				Do.Ammo = game.ReplicatedStorage:FindFirstChild("9mm").Value
-				game.ReplicatedStorage:FindFirstChild("9mm").Value = 0
-			end)
-			print(Do.Ammo)
-			reloading = false
-		end)
-	else
-
-		reloading = false
-		if game.ReplicatedStorage:FindFirstChild("9mm").Value <= 0 and Do.Ammo <=0 then
-		script.Parent:Destroy()
-		end
-	end
-end
-
---spawn(function() -- Negative  reserve ammo fix
---		if game.ReplicatedStorage:FindFirstChild("9mm").Value <0 then
---			game.ReplicatedStorage:FindFirstChild("9mm").Value = 0
---		end	
+--Tool.Equipped:Once(function()
+--	local Ninemm = Instance.new("NumberValue",game.ReplicatedStorage)
+--	Ninemm.Name = tostring("9mm")
+--	Ninemm.Value = math.huge
 --end)
 
-script.Parent.ReloadE.OnServerEvent:Connect(function(plr)
-	if Do.Ammo ~= 0 and not reloading then
-		reloading = true
-		reload(true)
-	end
-end)
+--local reloading = false
 
-spawn(function() -- checks if the amoo count is at 0 (don't change it's good)
-	while wait() do
-		if Do.Ammo == 0 and not reloading then
-			reloading = true
-			reload()
-		end
-	end
-end)
+--local Do = {
+--	Damage = 10;
+--	Cooldown = 0;
+--	Visualize = true;
+--	ShootSound = "rbxassetid://2697431";
+--	ReloadSound = "rbxassetid://2697432";
+--	MaxAmmo = 30;
+--	ReserveAmmo = game.ReplicatedStorage:WaitForChild("9mm").Value;
+--	Ammo = 30;
+--}
+
+--function CalculateNeededAmmo(Ammo)
+--	local x = Do.MaxAmmo - Ammo
+--	return x
+--end
+
+--local pressed = false
+---- thanks to rufus14 for the muzzle flash
+
+--tween = function(speed, easingstyle, easingdirection, loopcount, WHAT, goal)
+--	local info = TweenInfo.new(
+--		speed,
+--		easingstyle,
+--		easingdirection,
+--		loopcount
+--	)
+--	local goals = goal
+--	local anim = game:GetService("TweenService"):Create(WHAT, info, goals)
+--	anim:Play()
+--end
+
+--makepart = function(parent, size, cf, anchored, cancol, name) --spawnlocation because spawns have less limit on vsb
+--	local part = Instance.new("SpawnLocation")
+--	part.Enabled = false
+--	part.Anchored = anchored
+--	part.CanCollide = cancol
+--	part.Name = name or "Part"
+--	part.Size = size
+--	part.CFrame = cf
+--	part.Parent = parent
+--	part:BreakJoints()
+--	return part
+--end
+
+--function reload(ifpressedR) -- realod function no if realoading triggers are placed
+--	if game.ReplicatedStorage:FindFirstChild("9mm").Value > 0 and Do.Ammo == 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value >= Do.MaxAmmo then -- check if the player has spare ammo (reseve)
+--		print("No ammo")
+--	local sound = Instance.new("Sound",workspace) -- sound and anim creation
+--	sound.SoundId = Do.ReloadSound
+--	sound:Play()
+
+--	local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
 
 
-RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire function
-	if not OnCooldown then -- if not cooldown
-		OnCooldown = true
-		task.delay(Do.Cooldown,function()
-			OnCooldown = false
-		end)
-		if Do.Ammo > 0 and not reloading then -- check if the ammo count is not 0 and the gun is not realoded
-			Do.Ammo -= 1 -- removes 1 bullet from the curent amoo balance
-			print(Do.Ammo)
-			local Origin = ShootPart.WorldPosition
-			local Direction = (Received.Position-Origin).Unit*1500 -- raycast stuff don't mind
-			local Raycast = workspace:Raycast(Origin,Direction)
+--		sound.Ended:Connect(function() -- if the sound ended gives the changes the gun ammo count
+--			Do.Ammo = Do.MaxAmmo -- ammo count change
+--			game.ReplicatedStorage:FindFirstChild("9mm").Value -= Do.MaxAmmo -- removes ammo from reseve
+--			print(Do.Ammo)
+--			reloading = false  -- The bool "realoding " if off
+--	end)
+--	elseif game.ReplicatedStorage:FindFirstChild("9mm").Value < Do.MaxAmmo and  game.ReplicatedStorage:FindFirstChild("9mm").Value > 0 and Do.Ammo ~= 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value >= Do.MaxAmmo then -- TODO: Fix
+--		print("Less than 30,9mm biger than zero,Gun ammo = 0")
+--		print(game.ReplicatedStorage:FindFirstChild("9mm").Value)
+--		local sound = Instance.new("Sound",workspace)
+--		sound.SoundId = Do.ReloadSound
+--		sound:Play()
+--		local animid = nil
+--		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
 
-			local Intersection = Raycast and Raycast.Position or Origin + Direction
-			local Distance = (Origin - Intersection).Magnitude
+--		sound.Ended:Connect(function()
+--			local x = CalculateNeededAmmo(Do.Ammo) -- POSSIBLE MATH ERROR
+--			print(x.."  is x")
+--			Do.Ammo = Do.MaxAmmo
+--			game.ReplicatedStorage:FindFirstChild("9mm").Value =- x
+--			print(Do.Ammo)
+--			reloading = false
+--		end)
+--	elseif  game.ReplicatedStorage:FindFirstChild("9mm").Value ~= Do.MaxAmmo and Do.Ammo ~= Do.MaxAmmo and  Do.Ammo > 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value >= Do.MaxAmmo then
+--		print("9mm is diffrent than 30,Gun ammo diffrent then 30 9mm is bigger then 30")
+--		print(game.ReplicatedStorage:FindFirstChild("9mm").Value)
+--		local sound = Instance.new("Sound",workspace)
+--		sound.SoundId = Do.ReloadSound
+--		sound:Play()
+--		local animid = nil
+--		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
 
-			local Visualizer = Instance.new("Part")
-			Visualizer.CanTouch = false
-			Visualizer.CanCollide = false
-			Visualizer.CanQuery = false
-			Visualizer.CastShadow = false
-			Visualizer.Anchored = true
-			Visualizer.Material = Enum.Material.Neon
-			Visualizer.Color = Color3.fromRGB(255, 255, 0)
-			Visualizer.Size = Vector3.new(.15,.15,Distance)
-			Visualizer.CFrame = CFrame.new(Origin, Intersection)*CFrame.new(0,0,-Distance/2)
-			local shell = Instance.new("Part",workspace)
-			shell.BrickColor = BrickColor.new("Gold")
-			shell.Material = "Metal"
-			shell.Shape = Enum.PartType.Cylinder
-			shell.Size = Vector3.new(0.445, 0.151, 0.151)
-			shell.Position = script.Parent.BulletDrop.Position
-			Debris:AddItem(shell,3)
+--		sound.Ended:Connect(function()
+--			local x = CalculateNeededAmmo(Do.Ammo) -- POSSIBLE MATH ERROR
+--			print(x.."  is x")
+--			Do.Ammo = Do.MaxAmmo
+--			game.ReplicatedStorage:FindFirstChild("9mm").Value = game.ReplicatedStorage:FindFirstChild("9mm").Value - x
+--			print(Do.Ammo)
+--			reloading = false
+--		end)
+--	elseif  game.ReplicatedStorage:FindFirstChild("9mm").Value < Do.MaxAmmo and Do.Ammo ~= Do.MaxAmmo and Do.Ammo > 0 then
+--		if ifpressedR == true then
+--			if pressed == false then
+--				pressed  = true
+--				print("Dump")
+--				local sound = Instance.new("Sound",workspace)
+--				sound.SoundId = Do.ReloadSound
+--				sound:Play()
+--				local animid = nil
+--				local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
 
-			if Do.Visualize == true then -- Makes the "bullet" trail it's just a yellow part
-				Visualizer.Parent = workspace
-				TweenService:Create(Visualizer,TweenInfo.new(.3),{Transparency = 1, Size = Vector3.new(0,0,Distance)}):Play()
-				Debris:AddItem(Visualizer,.35)
-			end
-
-			if (Do.ShootSound ~= "" or Do.ShootSound ~= nil) then -- fire visualiser
-				local Sound = Instance.new("Sound")
-				local shockwave = makepart(
-					workspace,
-					Vector3.new(),
-					Tool.End.CFrame * CFrame.new(-0.5,0,0) * CFrame.Angles(math.pi/2,0,math.pi/2),
-					true,
-					false
-				)
-				local ring = makepart(
-					workspace,
-					Vector3.new(),
-					Tool.End.CFrame * CFrame.Angles(0,math.pi/2,0),
-					true,
-					false
-				)
-				local shockmesh = Instance.new("SpecialMesh", shockwave)
-				shockmesh.VertexColor = Vector3.new(20,20,20)
-				shockmesh.MeshId = "rbxassetid://20329976"
-				local ringmesh = Instance.new("SpecialMesh", ring)
-				ringmesh.VertexColor = Vector3.new(20,20,20)
-				ringmesh.MeshId = "rbxassetid://3270017"
-				shockwave.CanQuery = false
-				shockwave.CanTouch = false
-				shockwave.Color = Color3.fromRGB(255, 226, 6)
-				ring.CanQuery = false
-				ring.CanTouch = false
-				ring.Color = Color3.fromRGB(255, 226, 6)
-				tween(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, shockmesh, {Scale = Vector3.new(1,0,1)})
-				tween(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, shockwave, {Transparency = 1})
-				tween(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, ringmesh, {Scale = Vector3.new(2.5,2.5,0)})
-				tween(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, ring, {Transparency = 1})
-				local ligh = Instance.new("PointLight", Handle)
-				ligh.Brightness = 5
-				ligh.Range = 15
-				ligh.Color = Color3.fromRGB(255, 226, 6)
-				Debris:AddItem(ring, 0.15)
-				Debris:AddItem(shockwave, 0.15)
-				Debris:AddItem(ligh, 0.025)
-				Sound.SoundId = Do.ShootSound
-				Sound.Volume = .65
-				Sound.PlayOnRemove = true
-				Sound.Parent = Handle
-				Sound:Destroy()
-				local animid = nil
-				local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
-
-			end
-
-			if Raycast then -- hitscan
-				local Hit:Part = Raycast.Instance
-				local Humanoid = (Hit.Parent:FindFirstChildOfClass("Humanoid") or Hit.Parent.Parent:FindFirstChildOfClass("Humanoid"))
-
-				if Humanoid and Humanoid.Parent ~= Player.Character then
-					Humanoid:TakeDamage(Do.Damage)
-				end
-			end
-		end
+--				sound.Ended:Connect(function()
+--					game.ReplicatedStorage:FindFirstChild("9mm").Value = Do.Ammo
+--					Do.Ammo = game.ReplicatedStorage:FindFirstChild("9mm").Value
+--					print(Do.Ammo)
+--					reloading = false
+--				end)
+--			end
+--		end
+		
+--	elseif  game.ReplicatedStorage:FindFirstChild("9mm").Value <= Do.MaxAmmo and Do.Ammo == 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value ~= 0 then
+--		print("Dump all")
+--		local sound = Instance.new("Sound",workspace)
+--		sound.SoundId = Do.ReloadSound
+--		sound:Play()
+--		local animid = nil
+--		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
 	
-	end
-end)]=],Tool0)
-LocalScript3.Parent = Tool0
+--		sound.Ended:Connect(function()
+--			task.spawn(function()
+--				Do.Ammo = game.ReplicatedStorage:FindFirstChild("9mm").Value
+--				game.ReplicatedStorage:FindFirstChild("9mm").Value = 0
+--			end)
+--			print(Do.Ammo)
+--			reloading = false
+--		end)
+--	else
+
+--		reloading = false
+--		if game.ReplicatedStorage:FindFirstChild("9mm").Value <= 0 and Do.Ammo <=0 then
+--		script.Parent:Destroy()
+--		end
+--	end
+--end
+
+----spawn(function() -- Negative  reserve ammo fix
+----		if game.ReplicatedStorage:FindFirstChild("9mm").Value <0 then
+----			game.ReplicatedStorage:FindFirstChild("9mm").Value = 0
+----		end	
+----end)
+
+--script.Parent.ReloadE.OnServerEvent:Connect(function(plr)
+--	if Do.Ammo ~= 0 and not reloading then
+--		reloading = true
+--		reload(true)
+--	end
+--end)
+
+--spawn(function() -- checks if the amoo count is at 0 (don't change it's good)
+--	while wait() do
+--		if Do.Ammo == 0 and not reloading then
+--			reloading = true
+--			reload()
+--		end
+--	end
+--end)
+
+
+--RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire function
+--	if not OnCooldown then -- if not cooldown
+--		OnCooldown = true
+--		task.delay(Do.Cooldown,function()
+--			OnCooldown = false
+--		end)
+--		if Do.Ammo > 0 and not reloading then -- check if the ammo count is not 0 and the gun is not realoded
+--			Do.Ammo -= 1 -- removes 1 bullet from the curent amoo balance
+--			print(Do.Ammo)
+--			local Origin = ShootPart.WorldPosition
+--			local Direction = (Received.Position-Origin).Unit*1500 -- raycast stuff don't mind
+--			local Raycast = workspace:Raycast(Origin,Direction)
+
+--			local Intersection = Raycast and Raycast.Position or Origin + Direction
+--			local Distance = (Origin - Intersection).Magnitude
+
+--			local Visualizer = Instance.new("Part")
+--			Visualizer.CanTouch = false
+--			Visualizer.CanCollide = false
+--			Visualizer.CanQuery = false
+--			Visualizer.CastShadow = false
+--			Visualizer.Anchored = true
+--			Visualizer.Material = Enum.Material.Neon
+--			Visualizer.Color = Color3.fromRGB(255, 255, 0)
+--			Visualizer.Size = Vector3.new(.15,.15,Distance)
+--			Visualizer.CFrame = CFrame.new(Origin, Intersection)*CFrame.new(0,0,-Distance/2)
+--			local shell = Instance.new("Part",workspace)
+--			shell.BrickColor = BrickColor.new("Gold")
+--			shell.Material = "Metal"
+--			shell.Shape = Enum.PartType.Cylinder
+--			shell.Size = Vector3.new(0.445, 0.151, 0.151)
+--			shell.Position = script.Parent.BulletDrop.Position
+--			Debris:AddItem(shell,3)
+
+--			if Do.Visualize == true then -- Makes the "bullet" trail it's just a yellow part
+--				Visualizer.Parent = workspace
+--				TweenService:Create(Visualizer,TweenInfo.new(.3),{Transparency = 1, Size = Vector3.new(0,0,Distance)}):Play()
+--				Debris:AddItem(Visualizer,.35)
+--			end
+
+--			if (Do.ShootSound ~= "" or Do.ShootSound ~= nil) then -- fire visualiser
+--				local Sound = Instance.new("Sound")
+--				local shockwave = makepart(
+--					workspace,
+--					Vector3.new(),
+--					Tool.End.CFrame * CFrame.new(-0.5,0,0) * CFrame.Angles(math.pi/2,0,math.pi/2),
+--					true,
+--					false
+--				)
+--				local ring = makepart(
+--					workspace,
+--					Vector3.new(),
+--					Tool.End.CFrame * CFrame.Angles(0,math.pi/2,0),
+--					true,
+--					false
+--				)
+--				local shockmesh = Instance.new("SpecialMesh", shockwave)
+--				shockmesh.VertexColor = Vector3.new(20,20,20)
+--				shockmesh.MeshId = "rbxassetid://20329976"
+--				local ringmesh = Instance.new("SpecialMesh", ring)
+--				ringmesh.VertexColor = Vector3.new(20,20,20)
+--				ringmesh.MeshId = "rbxassetid://3270017"
+--				shockwave.CanQuery = false
+--				shockwave.CanTouch = false
+--				shockwave.Color = Color3.fromRGB(255, 226, 6)
+--				ring.CanQuery = false
+--				ring.CanTouch = false
+--				ring.Color = Color3.fromRGB(255, 226, 6)
+--				tween(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, shockmesh, {Scale = Vector3.new(1,0,1)})
+--				tween(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, shockwave, {Transparency = 1})
+--				tween(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, ringmesh, {Scale = Vector3.new(2.5,2.5,0)})
+--				tween(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, ring, {Transparency = 1})
+--				local ligh = Instance.new("PointLight", Handle)
+--				ligh.Brightness = 5
+--				ligh.Range = 15
+--				ligh.Color = Color3.fromRGB(255, 226, 6)
+--				Debris:AddItem(ring, 0.15)
+--				Debris:AddItem(shockwave, 0.15)
+--				Debris:AddItem(ligh, 0.025)
+--				Sound.SoundId = Do.ShootSound
+--				Sound.Volume = .65
+--				Sound.PlayOnRemove = true
+--				Sound.Parent = Handle
+--				Sound:Destroy()
+--				local animid = nil
+--				local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
+
+--			end
+
+--			if Raycast then -- hitscan
+--				local Hit:Part = Raycast.Instance
+--				local Humanoid = (Hit.Parent:FindFirstChildOfClass("Humanoid") or Hit.Parent.Parent:FindFirstChildOfClass("Humanoid"))
+
+--				if Humanoid and Humanoid.Parent ~= Player.Character then
+--					Humanoid:TakeDamage(Do.Damage)
+--				end
+--			end
+--		end
+	
+--	end
+--end)]=],Tool0)
+
 NLS([[local RunService:RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
@@ -460,8 +460,8 @@ end
 script.Parent.Equipped:connect(Finale)
 script.Parent.Unequipped:connect(Finale)
 Finale()]],Tool0)
-Script9.Name = "WeldArm"
-Script9.Parent = Tool0
+
+
 NS([[Tool = script.Parent;
 local arms = nil
 local torso = nil
@@ -522,8 +522,7 @@ end
 Tool.Equipped:connect(Equip)
 Tool.Unequipped:connect(Unequip)
 ]],Tool0)
-Script10.Name = "WeldArm"
-Script10.Parent = Tool0
+
 NS([[Tool = script.Parent;
 local arms = nil
 local torso = nil
@@ -584,8 +583,7 @@ end
 Tool.Equipped:connect(Equip)
 Tool.Unequipped:connect(Unequip)
 ]],Tool0)
-Script11.Name = "InstaWeld"
-Script11.Parent = Tool0
+
 NS([[local prev 
 local parts = script.Parent:GetChildren() 
 for i = 1,#parts do 
@@ -624,4 +622,4 @@ end
 end 
 wait(3) 
 script:remove()]],Tool0)
-for i,v in ipairs(Tool0:GetChildren()) do  if v:IsA("Part") then v.Anchored = false  end  end
+
