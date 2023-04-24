@@ -520,8 +520,8 @@ print("arms")
 end
 end
 Tool.Equipped:connect(Equip)
-Tool.Unequipped:connect(Unequip)
-]],Tool0)
+Tool.Unequipped:connect(Unequip)]],Tool0)
+
 
 NS([[Tool = script.Parent;
 local arms = nil
@@ -581,8 +581,8 @@ print("arms")
 end
 end
 Tool.Equipped:connect(Equip)
-Tool.Unequipped:connect(Unequip)
-]],Tool0)
+Tool.Unequipped:connect(Unequip)]],Tool0)
+
 
 NS([[local prev 
 local parts = script.Parent:GetChildren() 
@@ -600,11 +600,9 @@ prev = parts[i]
 end 
 end 
 wait(3) 
-script:remove()
-end))
-Script12.Name = "InstaWeld"
-Script12.Parent = Tool0
-table.insert(cors,sandbox(Script12,function()
+script:remove()]],Tool)
+
+NS([[
 local prev 
 local parts = script.Parent:GetChildren() 
 for i = 1,#parts do 
