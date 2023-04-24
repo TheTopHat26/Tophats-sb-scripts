@@ -80,7 +80,7 @@ WeldConstraint18.Part0 = Part17
 WeldConstraint18.Part1 = Part6
 local att = Instance.new("Attachment",Part6)
 att.Position = Vector3.new(0, 0.413, -1.51)
---NS([=[
+NS([=[
 local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
 
@@ -360,7 +360,7 @@ RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire
 		end
 	
 	end
-end) -- ]=],Tool0)
+end)]=],Tool0)
 LocalScript3.Parent = Tool0
 NLS([[local RunService:RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
