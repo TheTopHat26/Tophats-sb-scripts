@@ -80,6 +80,7 @@ WeldConstraint18.Part0 = Part17
 WeldConstraint18.Part1 = Part6
 local att = Instance.new("Attachment",Part6)
 att.Position = Vector3.new(0, 0.413, -1.51)
+Part6.Anchored = false
 NS([=[
 local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
