@@ -115,7 +115,7 @@ function CalculateNeededAmmo(Ammo)
 end
 
 local pressed = false
-
+-- thanks to rufus14 for the muzzle flash
 
 tween = function(speed, easingstyle, easingdirection, loopcount, WHAT, goal)
 	local info = TweenInfo.new(
