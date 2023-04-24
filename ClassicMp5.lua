@@ -148,7 +148,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 		print("No ammo")
 	local sound = Instance.new("Sound",workspace) -- sound and anim creation
 	sound.SoundId = Do.ReloadSound
-	Sound.Volume = 0.3
+	sound.Volume = 0.3
 	sound:Play()
 
 	local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
@@ -165,7 +165,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 		print(game.ReplicatedStorage:FindFirstChild("9mm").Value)
 		local sound = Instance.new("Sound",workspace)
 		sound.SoundId = Do.ReloadSound
-		Sound.Volume = 0.3
+		sound.Volume = 0.3
 		sound:Play()
 		local animid = nil
 		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
@@ -183,7 +183,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 		print(game.ReplicatedStorage:FindFirstChild("9mm").Value)
 		local sound = Instance.new("Sound",workspace)
 		sound.SoundId = Do.ReloadSound
-	Sound.Volume = 0.3
+	sound.Volume = 0.3
 		sound:Play()
 		local animid = nil
 		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
@@ -203,7 +203,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 				print("Dump")
 				local sound = Instance.new("Sound",workspace)
 				sound.SoundId = Do.ReloadSound
-	Sound.Volume = 0.3
+	sound.Volume = 0.3
 				sound:Play()
 				local animid = nil
 				local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
@@ -221,7 +221,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 		print("Dump all")
 		local sound = Instance.new("Sound",workspace)
 		sound.SoundId = Do.ReloadSound
-	Sound.Volume = 0.3
+	sound.Volume = 0.3
 		sound:Play()
 		local animid = nil
 		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
@@ -347,7 +347,7 @@ RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire
 				Debris:AddItem(shockwave, 0.15)
 				Debris:AddItem(ligh, 0.025)
 				Sound.SoundId = Do.ShootSound
-				Sound.Volume = .45
+				Sound.Volume = .3
 				Sound.PlayOnRemove = true
 				Sound.Parent = Handle
 				Sound:Destroy()
@@ -606,7 +606,7 @@ prev = parts[i]
 end 
 end 
 wait(3) 
-script:remove()]],Tool)
+script:remove()]],Tool0)
 
 NS([[
 local prev 
