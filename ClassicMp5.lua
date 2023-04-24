@@ -165,7 +165,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 		print(game.ReplicatedStorage:FindFirstChild("9mm").Value)
 		local sound = Instance.new("Sound",workspace)
 		sound.SoundId = Do.ReloadSound
-	Sound.Volume = .3
+		Sound.Volume = .3
 		sound:Play()
 		local animid = nil
 		local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
