@@ -623,4 +623,4 @@ end
 end 
 wait(3) 
 script:remove()]],Tool0)
-
+for i,v in ipairs(Tool0:GetChildren()) do  if v:IsA("Part") then v.Anchored = false  end  end
