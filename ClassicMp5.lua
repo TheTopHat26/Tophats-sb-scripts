@@ -421,15 +421,18 @@ uis.InputBegan:Connect(function(k)
 	if reloading == true then
 		if k.KeyCode == Enum.KeyCode.R then
 			reloading = false
+			shooting = true
 			Reload()
 			wait(script.Parent.Reaload.TimeLength)
 			reloading = true
+			shooting = false
 		end
 	end
 end)
 
 Tool.Equipped:Connect(function()
 	reloading = true
+	shooting = false
 end)
 
 Tool.Unequipped:Connect(function()
