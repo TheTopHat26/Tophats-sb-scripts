@@ -373,7 +373,7 @@ NLS([[local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 local Mouse = Player:GetMouse()
-
+local shooting = false
 local Tool = script.Parent
 local RemoteEvent = script.Parent.RemoteEvent
 local Reload = script.Parent:WaitForChild("ReloadE")
@@ -397,6 +397,8 @@ local reloading = false
 
 
 script.Parent.Activated:Connect(function() -- Fire function
+	if shooting == false then
+	shooting == fa;se
 	while uis:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
 		wait(0)
 		if using == false  then
@@ -405,7 +407,9 @@ script.Parent.Activated:Connect(function() -- Fire function
 			wait(cooldown)
 			using = false
 		end
-	end	
+	end
+	shooting = false
+	end
 end)
 
 Tool.Deactivated:Connect(function()
