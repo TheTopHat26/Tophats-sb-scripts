@@ -408,6 +408,7 @@ script.Parent.Activated:Connect(function() -- Fire function
 			using = false
 		end
 	end
+	shooting = false
 	end
 end)
 
