@@ -408,7 +408,6 @@ script.Parent.Activated:Connect(function() -- Fire function
 			using = false
 		end
 	end
-	shooting = false
 	end
 end)
 
@@ -435,6 +434,7 @@ end)
 
 Tool.Unequipped:Connect(function()
 	reloading = false
+	shooting = false
 end)]],Tool0)
 
 
