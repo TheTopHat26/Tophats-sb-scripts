@@ -406,7 +406,11 @@ script.Parent.Activated:Connect(function() -- Fire function
 			Send()
 			wait(cooldown)
 			using = false
-		end
+	spawn(function()
+	wait(.5)
+	shooting = false
+	end)
+end
 	end
 	shooting = false
 	end
