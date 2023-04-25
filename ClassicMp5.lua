@@ -398,7 +398,7 @@ local reloading = false
 
 script.Parent.Activated:Connect(function() -- Fire function
 	if shooting == false then
-	shooting == fa;se
+	shooting = false
 	while uis:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
 		wait(0)
 		if using == false  then
