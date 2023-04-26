@@ -1757,7 +1757,7 @@ Sound235.Parent = Folder234
 Sound235.SoundId = "rbxassetid://2863643761"
 
 NLS([[	local RunService = game:GetService("RunService")
-	local Players:Players = game:GetService("Players")
+	local Players = game:GetService("Players")
 	local Player = Players.LocalPlayer
 	local Mouse = Player:GetMouse()
 
