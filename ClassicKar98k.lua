@@ -1752,7 +1752,13 @@ Sound232.SoundId = "rbxassetid://132455896"
 Sound233.Name = "Headshot"
 Sound233.Parent = Tool0.Handle
 Sound233.SoundId = "rbxassetid://8270782741"
-
+		spawn(function()
+			for i,v in ipairs(Tool:GetChildren()) do
+				if v:IsA("Part" ) then
+					v.CanCollide = false
+				end
+			end
+		end)
 
 
 NLS([[	local RunService = game:GetService("RunService")
