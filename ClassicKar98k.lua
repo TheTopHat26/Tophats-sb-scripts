@@ -1808,7 +1808,7 @@ Mouse.Button2Down:Connect(function()
 	if aming == true and dis < 0.5 then
 		spawn(function()
 			for i,v in ipairs(Tool:GetChildren()) do
-				if v:IsA("Part") then
+				if v:IsA("Part" )and v.Name ~= "End" and v.Name ~= "BulletDrop"  then
 					v.Transparency = 1
 				end
 			end
