@@ -1754,8 +1754,9 @@ Sound233.Parent = Tool0.Handle
 Sound233.SoundId = "rbxassetid://8270782741"
 		spawn(function()
 			for i,v in ipairs(Tool:GetChildren()) do
-				if v:IsA("Part" ) then
-					v.CanCollide = false
+		if v:IsA("Part") then
+					local part:Part = v
+				part.CanCollide = false
 				end
 			end
 		end)
