@@ -2063,7 +2063,7 @@ end
 function reload(ifpressedR) -- realod function no if realoading triggers are placed
 	if game.ReplicatedStorage:FindFirstChild("9mm").Value > 0 and Do.Ammo == 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value >= Do.MaxAmmo then -- check if the player has spare ammo (reseve)
 		print("No ammo")
-	local sound = Instance.new("Sound",workspace) -- sound and anim creation
+	local sound = Instance.new("Sound",Handle) -- sound and anim creation
 	sound.SoundId = Do.ReloadSound
 	sound:Play()
 
@@ -2079,7 +2079,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 	elseif game.ReplicatedStorage:FindFirstChild("9mm").Value < Do.MaxAmmo and  game.ReplicatedStorage:FindFirstChild("9mm").Value > 0 and Do.Ammo ~= 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value >= Do.MaxAmmo then -- TODO: Fix
 		print("Less than 30,9mm biger than zero,Gun ammo = 0")
 		print(game.ReplicatedStorage:FindFirstChild("9mm").Value)
-		local sound = Instance.new("Sound",workspace)
+		local sound = Instance.new("Sound",Handle)
 		sound.SoundId = Do.ReloadSound
 		sound:Play()
 		local animid = nil
@@ -2096,7 +2096,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 	elseif  game.ReplicatedStorage:FindFirstChild("9mm").Value ~= Do.MaxAmmo and Do.Ammo ~= Do.MaxAmmo and  Do.Ammo > 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value >= Do.MaxAmmo then
 		print("9mm is diffrent than 30,Gun ammo diffrent then 30 9mm is bigger then 30")
 		print(game.ReplicatedStorage:FindFirstChild("9mm").Value)
-		local sound = Instance.new("Sound",workspace)
+		local sound = Instance.new("Sound",Handle)
 		sound.SoundId = Do.ReloadSound
 		sound:Play()
 		local animid = nil
@@ -2115,7 +2115,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 			if pressed == false then
 				pressed  = true
 				print("Dump")
-				local sound = Instance.new("Sound",workspace)
+				local sound = Instance.new("Sound",Handle)
 				sound.SoundId = Do.ReloadSound
 				sound:Play()
 				local animid = nil
@@ -2132,7 +2132,7 @@ function reload(ifpressedR) -- realod function no if realoading triggers are pla
 		
 	elseif  game.ReplicatedStorage:FindFirstChild("9mm").Value <= Do.MaxAmmo and Do.Ammo == 0 and game.ReplicatedStorage:FindFirstChild("9mm").Value ~= 0 then
 		print("Dump all")
-		local sound = Instance.new("Sound",workspace)
+		local sound = Instance.new("Sound",Handle)
 		sound.SoundId = Do.ReloadSound
 		sound:Play()
 		local animid = nil
