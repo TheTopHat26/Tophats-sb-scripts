@@ -2273,7 +2273,7 @@ RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire
 				local Humanoid = (Hit.Parent:FindFirstChildOfClass("Humanoid") or Hit.Parent.Parent:FindFirstChildOfClass("Humanoid"))
 
 				if Humanoid and Humanoid.Parent ~= Player.Character then
-					if Hit.Name == "Head" and Hit.Parent:IsA("Accessory") then
+					if Hit.Name == "Head" or Hit.Parent:IsA("Accessory") then
 						Humanoid:TakeDamage(Do.HeadDamage)
 						Hit.Transparency = 1
 						Tool.Handle.Headshot:Play()
