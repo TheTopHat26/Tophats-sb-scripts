@@ -1806,6 +1806,13 @@ NLS([[	local RunService = game:GetService("RunService")
 Mouse.Button2Down:Connect(function()
 	local dis = (script.Parent.Parent.Head.Position - workspace.CurrentCamera.CFrame.Position).Magnitude
 	if aming == true and dis < 0.5 then
+		spawn(function()
+			for i,v in ipairs(Tool:GetChildren()) do
+				if v:IsA("Part") then
+					v.Transparency = 1
+				end
+			end
+		end)
 			aming =false
 			workspace.CurrentCamera.FieldOfView = 3.5
 		end
@@ -1813,13 +1820,20 @@ Mouse.Button2Down:Connect(function()
 end)
 
 
-	Mouse.Button2Up:Connect(function()
-		if aming == false then
-			aming =true
-			workspace.CurrentCamera.FieldOfView = 70
-		end
+Mouse.Button2Up:Connect(function()
+	if aming == false then
+		aming =true
+		spawn(function()
+			for i,v in ipairs(Tool:GetChildren()) do
+				if v:IsA("Part") then
+					v.Transparency = 0
+				end
+			end
+		end)
+		workspace.CurrentCamera.FieldOfView = 70
+	end
 
-	end)
+end)
 
 	uis.InputBegan:Connect(function(k) 
 		if reloading == true then
