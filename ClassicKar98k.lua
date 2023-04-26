@@ -1750,13 +1750,10 @@ Sound232.Name = "Reload"
 Sound232.Parent = Tool0
 Sound232.SoundId = "rbxassetid://132455896"
 Sound233.Name = "Headshot"
-Sound233.Parent = Tool0
+Sound233.Parent = Tool0.Handle
 Sound233.SoundId = "rbxassetid://8270782741"
-Folder234.Name = "Taunts"
-Folder234.Parent = Tool0
-Sound235.Name = "taunt1"
-Sound235.Parent = Folder234
-Sound235.SoundId = "rbxassetid://2863643761"
+
+
 
 NLS([[	local RunService = game:GetService("RunService")
 	local Players = game:GetService("Players")
@@ -2276,10 +2273,10 @@ RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire
 				local Humanoid = (Hit.Parent:FindFirstChildOfClass("Humanoid") or Hit.Parent.Parent:FindFirstChildOfClass("Humanoid"))
 
 				if Humanoid and Humanoid.Parent ~= Player.Character then
-					if Hit.Name == "Head" then
+					if Hit.Name == "Head" and Hit.Parent:IsA("Accessory") then
 						Humanoid:TakeDamage(Do.HeadDamage)
 						Hit.Transparency = 1
-						Tool.Headshot:Play()
+						Tool.Handle.Headshot:Play()
 						--local e = Tool.Taunts:GetChildren()
 						--local ran:Sound= e[math.random(1,#e)]:Clone()
 						--ran.Parent = Handle
