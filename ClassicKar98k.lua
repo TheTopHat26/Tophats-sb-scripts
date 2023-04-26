@@ -1803,14 +1803,14 @@ NLS([[	local RunService = game:GetService("RunService")
 	end)
 
 
-	Mouse.Button2Down:Connect(function()
-
-		if aming == true then
+Mouse.Button2Down:Connect(function()
+	local dis = (script.Parent.Parent.Head.Position - workspace.CurrentCamera.CFrame.Position).Magnitude
+	if aming == true and dis < 0.5 then
 			aming =false
 			workspace.CurrentCamera.FieldOfView = 3.5
 		end
 
-	end)
+end)
 
 
 	Mouse.Button2Up:Connect(function()
