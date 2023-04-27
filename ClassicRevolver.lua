@@ -2223,7 +2223,7 @@ NLS([[local RunService = game:GetService("RunService")
 			if k.KeyCode == Enum.KeyCode.R then
 				reloading = false
 				Reload()
-				wait(script.Parent.Reload.TimeLength)
+				wait(script.Parent.Handle.Reload.TimeLength)
 				reloading = true
 			end
 		end
