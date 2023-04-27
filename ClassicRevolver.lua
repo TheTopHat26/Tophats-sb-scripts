@@ -2131,6 +2131,11 @@ Part272.Size = Vector3.new(0.5, 0.5, 0.5)
 Part272.BottomSurface = Enum.SurfaceType.Smooth
 Part272.TopSurface = Enum.SurfaceType.Smooth
 Script273.Parent = Tool0
+local att = Instance.new("Attachment",Part25)
+att.Position = Vector3.new(-0, 0.413, -2.223)
+local remote = Instance.new("RemoteEvent",Tool0)
+remote.Name = "ReloadE"
+
 
 
 NS([[function Weld(x,y)
