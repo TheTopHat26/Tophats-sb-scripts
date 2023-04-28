@@ -2191,6 +2191,7 @@ spawn(function() -- checks if the amoo count is at 0 (don't change it's good)
 	end
 end)
 
+	local kills = 0
 
 RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire function
 	if not OnCooldown then -- if not cooldown
@@ -2286,6 +2287,18 @@ RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire
 				local Humanoid = (Hit.Parent:FindFirstChildOfClass("Humanoid") or Hit.Parent.Parent:FindFirstChildOfClass("Humanoid"))
 
 				if Humanoid and Humanoid.Parent ~= Player.Character then
+	
+		Humanoid.Died:Connect(function()
+						kills+=1
+						print("kill :yesss:")
+					end)
+					
+					if kills >= 5 and avalable == true then
+						local desc = game.Players:GetHumanoidDescriptionFromUserId(game.Players:GetPlayerFromCharacter(script.Parent.Parent).UserId)
+						desc.HatAccessory = desc.HatAccessory..",1086814"
+						local hum = script.Parent.Parent:FindFirstChildWhichIsA("Humanoid")
+						hum:ApplyDescription(desc)
+					end
 					if Hit.Name == "Head" or Hit.Parent:IsA("Accessory") then
 						Humanoid:TakeDamage(Do.HeadDamage)
 						Hit.Transparency = 1
