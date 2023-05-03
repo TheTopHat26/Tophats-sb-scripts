@@ -763,6 +763,6 @@ if Tool and script.ClassName == "Script" then
 	end)
 end
 
--- Created by Quenty (@Quenty, follow me on twitter).]])
+-- Created by Quenty (@Quenty, follow me on twitter).]],Tool0)
 
 
