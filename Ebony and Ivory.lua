@@ -152,7 +152,7 @@ local pressed = false
 
 local theme = Instance.new("Sound",Handle)
 theme.SoundId = "rbxassetid://13299215420"
-theme.Volume = 1
+theme.Volume = 1.8
 
 Tool.Equipped:Connect(function()
 	theme:Play()
