@@ -115,6 +115,10 @@ Weld18.C1 = CFrame.new(0.247382164, -0.32190156, -0.0168418884, -2.00013492e-05,
 Weld18.Part0 = Part15
 Weld18.Part1 = Part12
 Weld18.part1 = Part12
+local att = Instance.new("Attachment",Part15)
+att.Position = Vector3.new(1.8, 0.396, -0.014)
+local att2 = Instance.new("Attachment",Part13)
+att2.Position = Vector3.new(1.8, 0.396, -0.014)
 NS([[local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
 
@@ -148,14 +152,14 @@ local pressed = false
 
 local theme = Instance.new("Sound",Handle)
 theme.SoundId = "rbxassetid://13299215420"
-theme.Volume = .45
+theme.Volume = 1
 
 Tool.Equipped:Connect(function()
 	theme:Play()
 end)
 
 Tool.Unequipped:Connect(function()
-	theme:Play()
+	theme:Stop()
 end)
 
 
@@ -494,7 +498,7 @@ end)]],Tool0)
 
 
 
-LocalScript10.Parent = Tool0
+
 NLS([[local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
@@ -566,8 +570,7 @@ Tool.Unequipped:Connect(function()
 	reloading = false
 end)
 ]],Tool0)
-Script11.Name = "qPerfectionWeld"
-Script11.Parent = Tool0
+
 NS([[
 
 local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
