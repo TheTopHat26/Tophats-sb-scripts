@@ -1910,7 +1910,7 @@ NS([[local Debris = game:GetService("Debris")
 					local player = game.Players:GetPlayerFromCharacter(me.Parent)
 					dealtone = true
 					local hithum = hit.Parent:FindFirstChildWhichIsA("Humanoid")
-					hithum:TakeDamage(25)
+					hithum.Health-=25
 					script.Parent.hit:Play()
 					spawn(function()
 						for i = 1,7 do
