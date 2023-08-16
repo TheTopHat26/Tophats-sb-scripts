@@ -71,6 +71,10 @@ SpecialMesh12.MeshId = "rbxassetid://430355386"
 SpecialMesh12.Scale = Vector3.new(0.06923076510429382, 0.06923077255487442, 0.06923076510429382)
 SpecialMesh12.MeshType = Enum.MeshType.FileMesh
 
+
+local att = Instance.new("Attachment",Part11)
+att.Position = Vector3.new(0, 0.413, -1.51)
+
 NS([[
 local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
