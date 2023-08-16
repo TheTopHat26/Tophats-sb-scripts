@@ -539,12 +539,12 @@ end)]],Tool0)
 
 
 
-NLS([[local RunService:RunService = game:GetService("RunService")
-local Players:Players = game:GetService("Players")
+NLS([[local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 local Mouse = Player:GetMouse()
 
-local Tool:Tool = script.Parent
+local Tool = script.Parent
 local RemoteEvent:RemoteEvent = script.Parent.RemoteEvent
 local Reload = script.Parent:WaitForChild("ReloadE")
 
