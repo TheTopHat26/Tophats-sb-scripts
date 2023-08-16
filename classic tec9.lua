@@ -1,3 +1,5 @@
+
+
 Tool0 = Instance.new("Tool")
 RemoteEvent1 = Instance.new("RemoteEvent")
 Script2 = Instance.new("Script")
@@ -7,9 +9,10 @@ Part5 = Instance.new("Part")
 Sound6 = Instance.new("Sound")
 Sound7 = Instance.new("Sound")
 Part8 = Instance.new("Part")
-MeshPart9 = Instance.new("MeshPart")
+WeldConstraint9 = Instance.new("WeldConstraint")
 WeldConstraint10 = Instance.new("WeldConstraint")
-WeldConstraint11 = Instance.new("WeldConstraint")
+Part11 = Instance.new("Part")
+SpecialMesh12 = Instance.new("SpecialMesh")
 Tool0.Name = "Tec-9"
 Tool0.Parent = owner.Backpack
 Tool0.Grip = CFrame.new(0, 0, 0.579076767, 1, 6.05360118e-09, -1.19209233e-07, -6.05359629e-09, 1, 3.72528817e-08, 1.19209233e-07, -3.72528817e-08, 1)
@@ -23,9 +26,9 @@ RemoteEvent4.Name = "ReloadE"
 RemoteEvent4.Parent = Tool0
 Part5.Name = "End"
 Part5.Parent = Tool0
-Part5.CFrame = CFrame.new(-40.5822983, 5.92354202, -33.4368439, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+Part5.CFrame = CFrame.new(-55.1822968, 1.82354188, -32.2868423, 0, 0, -1, 0, 1, 0, 1, 0, 0)
 Part5.Orientation = Vector3.new(0, -90, 0)
-Part5.Position = Vector3.new(-40.582298278808594, 5.923542022705078, -33.43684387207031)
+Part5.Position = Vector3.new(-55.18229675292969, 1.8235418796539307, -32.286842346191406)
 Part5.Rotation = Vector3.new(0, -90, 0)
 Part5.Transparency = 1
 Part5.Size = Vector3.new(0.5, 0.5, 0.5)
@@ -40,29 +43,36 @@ Sound7.Parent = Tool0
 Sound7.SoundId = "rbxassetid://1074291066"
 Part8.Name = "BulletDrop"
 Part8.Parent = Tool0
-Part8.CFrame = CFrame.new(-40.9784241, 5.89808846, -31.7895088, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-Part8.Position = Vector3.new(-40.978424072265625, 5.898088455200195, -31.789508819580078)
+Part8.CFrame = CFrame.new(-55.5784225, 1.79808831, -30.6395092, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part8.Position = Vector3.new(-55.57842254638672, 1.7980883121490479, -30.639509201049805)
 Part8.Transparency = 1
 Part8.Size = Vector3.new(0.5, 0.5, 0.5)
 Part8.BottomSurface = Enum.SurfaceType.Smooth
 Part8.CanCollide = false
 Part8.TopSurface = Enum.SurfaceType.Smooth
-MeshPart9.Name = "Handle"
-MeshPart9.Parent = Tool0
-MeshPart9.CFrame = CFrame.new(-40.6208153, 5.31954193, -31.9204979, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-MeshPart9.Position = Vector3.new(-40.62081527709961, 5.319541931152344, -31.92049789428711)
-MeshPart9.Color = Color3.new(0.105882, 0.164706, 0.207843)
-MeshPart9.Size = Vector3.new(0.441619873046875, 1.539083480834961, 2.4410133361816406)
-MeshPart9.BrickColor = BrickColor.new("Black")
-MeshPart9.brickColor = BrickColor.new("Black")
+WeldConstraint9.Parent = Tool0
+WeldConstraint9.Part0 = Part8
+WeldConstraint9.Part1 = Part11
 WeldConstraint10.Parent = Tool0
-WeldConstraint10.Part0 = Part8
-WeldConstraint10.Part1 = MeshPart9
-WeldConstraint11.Parent = Tool0
-WeldConstraint11.Part0 = Part5
-WeldConstraint11.Part1 = MeshPart9
+WeldConstraint10.Part0 = Part5
+WeldConstraint10.Part1 = Part11
+Part11.Name = "Handle"
+Part11.Parent = Tool0
+Part11.CFrame = CFrame.new(-55.2210007, 1.1731112, -30.7200012, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Part11.Position = Vector3.new(-55.22100067138672, 1.1731112003326416, -30.720001220703125)
+Part11.Color = Color3.new(0.105882, 0.164706, 0.207843)
+Part11.Size = Vector3.new(0.41538453102111816, 1.350000023841858, 2.3884613513946533)
+Part11.BottomSurface = Enum.SurfaceType.Smooth
+Part11.BrickColor = BrickColor.new("Black")
+Part11.TopSurface = Enum.SurfaceType.Smooth
+Part11.brickColor = BrickColor.new("Black")
+SpecialMesh12.Parent = Part11
+SpecialMesh12.MeshId = "rbxassetid://430355386"
+SpecialMesh12.Scale = Vector3.new(0.06923076510429382, 0.06923077255487442, 0.06923076510429382)
+SpecialMesh12.MeshType = Enum.MeshType.FileMesh
 
-NS([[local TweenService = game:GetService("TweenService")
+NS([[
+local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
 
 local Tool = script.Parent
@@ -528,6 +538,7 @@ RemoteEvent.OnServerEvent:Connect(function(Player,Received,MTarget) -- Main fire
 end)]],Tool0)
 
 
+
 NLS([[local RunService:RunService = game:GetService("RunService")
 local Players:Players = game:GetService("Players")
 local Player = Players.LocalPlayer
@@ -599,5 +610,6 @@ Tool.Unequipped:Connect(function()
 	reloading = false
 	can = false
 end)
+
 ]],Tool0)
 
