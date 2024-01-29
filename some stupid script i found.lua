@@ -296,10 +296,10 @@ local function FQBNM_fake_script() -- Sing.LocalScript
 			for i,v in pairs(res) do
 				if script.Parent.Parent.Wating.Text == nil then
 					wait(2.3)
-					game:GetService("Chat"):DisplayBubble(owner.Character,v)
+					game:GetService("TextChatService"):DisplayBubble(owner.Character,v)
 				else
 					wait(script.Parent.Parent.Wating.Text)
-					game:GetService("Chat"):DisplayBubble(owner.Character,v)
+					game:GetService("TextChatService"):DisplayBubble(owner.Character,v)
 
 				end
 			end
@@ -312,10 +312,10 @@ local function FQBNM_fake_script() -- Sing.LocalScript
 			for i,v in pairs(res) do
 				if script.Parent.Parent.Wating.Text == nil then
 					wait(2.3)
-					game:GetService("Chat"):DisplayBubble(owner.Character,v)
+					game:GetService("TextChatService"):DisplayBubble(owner.Character,v)
 
 				else
-					game:GetService("Chat"):DisplayBubble(owner.Character,v)
+					game:GetService("TextChatService"):DisplayBubble(owner.Character,v)
 
 				end
 			end
@@ -328,9 +328,9 @@ local function FQBNM_fake_script() -- Sing.LocalScript
 			for i,v in pairs(res) do
 				if script.Parent.Parent.Wating.Text == nil then
 					wait(2.3)
-					game:GetService("Chat"):DisplayBubble(owner.Character,v)
+					game:GetService("TextChatService"):DisplayBubble(owner.Character,v)
 				else
-					game:GetService("Chat"):DisplayBubble(owner.Character,v)
+					game:GetService("TextChatService"):DisplayBubble(owner.Character,v)
 
 				end
 			end
@@ -343,11 +343,11 @@ local function FQBNM_fake_script() -- Sing.LocalScript
 			for i,v in pairs(res) do
 				if script.Parent.Parent.Wating.Text == nil then
 					wait(2.3)
-					game:GetService("Chat"):DisplayBubble(owner.Character,v)
+					game:GetService("TextChatService"):DisplayBubble(owner.Character,v)
 
 				else
 					wait(script.Parent.Parent.Wating.Text)
-					game:GetService("Chat"):DisplayBubble(owner.Character,v)
+					game:GetService("TextChatService"):DisplayBubble(owner.Character,v)
 
 				end
 			end
