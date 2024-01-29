@@ -296,10 +296,10 @@ local function FQBNM_fake_script() -- Sing.LocalScript
 			for i,v in pairs(res) do
 				if script.Parent.Parent.Wating.Text == nil then
 					wait(2.3)
-					owner:Chat(v)
+					game:GetService("Chat"):DisplayBubble(owner.Character,v)
 				else
 					wait(script.Parent.Parent.Wating.Text)
-					owner:Chat(v)
+					game:GetService("Chat"):DisplayBubble(owner.Character,v)
 
 				end
 			end
@@ -312,10 +312,10 @@ local function FQBNM_fake_script() -- Sing.LocalScript
 			for i,v in pairs(res) do
 				if script.Parent.Parent.Wating.Text == nil then
 					wait(2.3)
-					owner:Chat(v)
+					game:GetService("Chat"):DisplayBubble(owner.Character,v)
 
 				else
-					owner:Chat(v)
+					game:GetService("Chat"):DisplayBubble(owner.Character,v)
 
 				end
 			end
@@ -328,10 +328,9 @@ local function FQBNM_fake_script() -- Sing.LocalScript
 			for i,v in pairs(res) do
 				if script.Parent.Parent.Wating.Text == nil then
 					wait(2.3)
-					owner:Chat(v)
-
+					game:GetService("Chat"):DisplayBubble(owner.Character,v)
 				else
-					owner:Chat(v)
+					game:GetService("Chat"):DisplayBubble(owner.Character,v)
 
 				end
 			end
@@ -344,11 +343,11 @@ local function FQBNM_fake_script() -- Sing.LocalScript
 			for i,v in pairs(res) do
 				if script.Parent.Parent.Wating.Text == nil then
 					wait(2.3)
-					owner:Chat(v)
+					game:GetService("Chat"):DisplayBubble(owner.Character,v)
 
 				else
 					wait(script.Parent.Parent.Wating.Text)
-					owner:Chat(v)
+					game:GetService("Chat"):DisplayBubble(owner.Character,v)
 
 				end
 			end
@@ -447,15 +446,4 @@ local function BAOWC_fake_script() -- n4.LocalScript
 	end)
 end
 coroutine.wrap(BAOWC_fake_script)()
-local function CMJME_fake_script() -- http2.LocalScript 
-	local script = Instance.new('LocalScript', http2)
 
-	if game.HttpService.HttpEnabled == true then
-		script.Parent.Text = "True"
-		script.Parent.TextColor = BrickColor.new("Neon green")
-	else
-		script.Parent.Text = "False"
-		script.Parent.TextColor = BrickColor.new("Really red")
-	end
-end
-coroutine.wrap(CMJME_fake_script)()
