@@ -51,9 +51,10 @@ tool.Activated:Connect(function()
 		local humanoid = target:FindFirstChildWhichIsA('Humanoid')
 				script.Parent.RemoteEvent:FireServer(target)
 				print("fired ig")
-			task.wait(5)
-			de = false
+			
 	end
+	task.wait(5)
+	de = false
 	end
 end)]],Tool0)
 
