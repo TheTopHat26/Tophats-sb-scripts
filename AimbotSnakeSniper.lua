@@ -789,18 +789,8 @@ end
 
 function GunObj:AimLoop(torso,mouse)
 	if torso:FindFirstChild('BodyGyro') then torso.BodyGyro.Parent = nil end
-	local gyro = Instance.new('BodyGyro')
-	gyro.cframe = CFrame.Angles(-math.pi/2,0,0)
-	gyro.maxTorque= Vector3.new(math.huge,math.huge,math.huge)
-	gyro.Parent = torso
 	local human = torso.Parent:FindFirstChild'Humanoid'
 	human.AutoRotate = false
-	while self.Equipped do
-		local diff = -(mouse.Hit.p - torso.CFrame.p)
-		gyro.cframe = CFrame.Angles(-math.pi/2,0,math.atan2(diff.x,diff.z))
-		wait()
-	end
-	gyro.Parent = nil
 	human.AutoRotate = true
 	human:ChangeState(Enum.HumanoidStateType.GettingUp)
 end
