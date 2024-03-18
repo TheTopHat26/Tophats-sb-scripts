@@ -792,7 +792,7 @@ function GunObj:AimLoop(torso,mouse)
 	local human = torso.Parent:FindFirstChild'Humanoid'
 	human.AutoRotate = false
 	human.AutoRotate = true
-	human:ChangeState(Enum.HumanoidStateType.GettingUp)
+	--human:ChangeState(Enum.HumanoidStateType.GettingUp)
 end
 
 function GunObj:OnEquipped(mouse)
