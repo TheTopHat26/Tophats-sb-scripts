@@ -355,7 +355,7 @@ function GunObject:Initialize()
 			if humanoid ~= nil and plr1 ~= nil then
 				if humanoid.Health > 0 then
 					function FindTarget()
-						local maxDistance = 1500
+						local maxDistance = 150
 						local target = nil
 						for i,v in pairs(workspace:GetChildren()) do
 							if v:FindFirstChild("Humanoid") and v:FindFirstChild("Humanoid").Health ~= 0 and v:FindFirstChild("Humanoid") ~= script.Parent.Parent:FindFirstChildWhichIsA("Humanoid") then
