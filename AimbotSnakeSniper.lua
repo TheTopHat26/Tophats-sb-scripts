@@ -279,6 +279,20 @@ GunObject.Tool.MousePos.OnServerEvent:connect(function(client, pos)
 	end
 end)
 
+local ang
+
+script.Parent.Equipped:Connect(function()
+	 ang = Instance.new("BodyAngularVelocity")
+	ang.Parent = script.Parent.Parent:FindFirstChild("Torso")
+	ang.AngularVelocity = Vector3.new(0,90,0)
+	ang.MaxTorque = Vector3.new(0,25000,0) 
+	ang.P = 50
+end)
+script.Parent.Unequipped:Connect(function()
+	ang:Destroy()
+end)
+
+	
 --[[Member functions]]
 
 function GunObject:Initialize()
