@@ -13,7 +13,7 @@ function func.Create(In,Prop,Parent)
 	return New
 end
 
-local  func.Tween(Obj,Info,Goal)
+function func.Tween(Obj,Info,Goal)
 	local tween = game:GetService("TweenService"):Create(Obj,Info,Goal)
 	tween:Play()
 	spawn(function()
