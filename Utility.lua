@@ -81,4 +81,102 @@ function func.SmoothDamp(current, target, currentVelocity, smoothTime, maxSpeed,
 	return Vector3.new(num14, num15, num16)
 end
 
+local function Subtract(Part:BasePart,Negation:{Instance}|Instance,CollisionFidelity:Enum.CollisionFidelity|nil)
+	if(CollisionFidelity==nil)then CollisionFidelity = 'Hull' end
+	if(typeof(Negation)=='table')then
+		for o, p in next, Negation do
+			if (p:IsDescendantOf(workspace)) then
+			else
+				return
+			end
+		end
+		return(Part:SubtractAsync(Negation, CollisionFidelity));
+	else
+		if(Part:IsDescendantOf(workspace))then
+			return(Part:SubtractAsync({Negation}, CollisionFidelity));
+		end
+	end
+end;
+
+function func.Fragment(Part:Part, Count)
+	local Fragments = {};
+	local partSize = Part.Size;
+	local partCF = Part.CFrame;
+
+	if(Part:IsDescendantOf(workspace) and Count >= 0)then
+		local c1 = Instance.new('Part')
+		c1.BrickColor = Part.BrickColor
+		c1.Size = partSize*4
+		c1.CFrame = partCF * CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))) * CFrame.new(0, -partSize.Y * 2, 0)
+		local c2 = c1:Clone()
+		c2.CFrame = partCF * CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))) * CFrame.new(0, partSize.Y * 2, 0)
+		local p1, p2
+		pcall(function()
+			p1 = Subtract(Part, c1)
+			p2 = Subtract(Part, c2)
+		end)
+		if(p1 and p2) then
+			p1.CFrame = partCF * partCF:ToObjectSpace(p1.CFrame)
+			p2.CFrame = partCF * partCF:ToObjectSpace(p2.CFrame)
+			p1.Parent = Part.Parent
+			p2.Parent = Part.Parent
+			local f1 = func.Fragment(p1, Count-1)
+			local f2 = func.Fragment(p2, Count-1)
+			table.insert(Fragments, p1)
+			table.insert(Fragments, p2)
+			for i, v in next, f1 do
+				table.insert(Fragments, v)
+			end
+			for i, v in next, f2 do
+				table.insert(Fragments, v)
+			end
+		end
+	end
+	for i, v in next, Fragments do
+		v.Anchored = false
+		game.Debris:AddItem(v,5)
+	end
+	if(#Fragments == 0) then
+		Fragments = {Part:Clone()}
+	end
+	return (Fragments)
+end
+
+ function func.so(id,vol,pitch,effect,destroy,par)
+	if effect == nil then
+		local so = Instance.new("Sound",par)
+		so.SoundId = `rbxassetid://{id}`
+		so.Volume = vol
+		so.PlaybackSpeed = pitch
+		if destroy == true then
+			so.PlayOnRemove = true
+			so:Destroy()
+		else
+			spawn(function()
+				so:Play()
+				so.Ended:Wait()
+				so:Destroy()
+			end)
+		end
+		return so
+	else
+		local so = Instance.new("Sound",par)
+		so.SoundId = `rbxassetid://{id}`
+		so.Volume = vol
+		so.PlaybackSpeed = pitch
+		effect.Parent = so
+		if destroy == true then
+			so.PlayOnRemove = true
+			so:Destroy()
+		else
+			spawn(function()
+				so:Play()
+				so.Ended:Wait()
+				so:Destroy()
+			end)
+		end
+		return so
+	end
+end
+
 return func
