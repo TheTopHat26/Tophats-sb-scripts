@@ -904,7 +904,7 @@ while true do
 	end
 end
 
-]])
+]],Compass)
 
 NLS([[
 local UIS = game:GetService("UserInputService")
@@ -943,7 +943,7 @@ end
 
 RS.RenderStepped:Connect(RenderStep)
 
-]])
+]],Frame)
 
 
 
@@ -1060,7 +1060,14 @@ Hum.HealthChanged:Connect(function(hp)
 	TW:Create(Bar,StandardTwInfo,{Size = UDim2.fromScale(math.min(hp / 110),0.05)}):Play()
 end)
 
-
+Player.CharacterAdded:Connect(function(C)
+	Bar.Size = UDim2.fromScale(0.9,0.05)
+	Text.Text = 100
+	TW:Create(Bar,StandardTwInfo,{BackgroundColor3 = Color3.fromRGB(42, 255, 120)}):Play()
+	TW:Create(Text,StandardTwInfo,{TextColor3 = Color3.fromRGB(42, 255, 120)}):Play()
+	Char = C
+	Hum = Char:FindFirstChildWhichIsA("Humanoid")
+end)
 -- PLAYERLIST
 
 local Playerlist = self.Playerlist
@@ -1076,25 +1083,27 @@ for _,v in ipairs(game.Players:GetPlayers()) do
 	new:WaitForChild("PlayerName").Text = v.Name
 	--Icons
 	if v:IsFriendsWith(Player.UserId) then
-		new.Icon = "rbxassetid://1030533835"
+		new:WaitForChild("Icon").Image = "rbxassetid://1030533835"
 	elseif game.CreatorId == v.UserId then
-		new.Icon = "rbxassetid://11322089611"
+		new:WaitForChild("Icon").Image = "rbxassetid://11322089611"
 	elseif v.HasVerifiedBadge then
-		new.Icon = "rbxassetid://14152999613"
+		new:WaitForChild("Icon").Image = "rbxassetid://14152999613"
 	elseif v.MembershipType == Enum.MembershipType.Premium then
-		new.Icon = "rbxassetid://6762167229"
+		new:WaitForChild("Icon").Image = "rbxassetid://6762167229"
+	else
+		new.Icon.Visible = false
 	end
-	
+
 	if v.Team ~= nil then
 		new.PlayerName.TextColor = v.TeamColor
 	end
-	
+
 	local Team = v.Team
-	
+
 	v:GetPropertyChangedSignal("TeamColor"):Connect(function()
 		TW:Create(new.PlayerName,StandardTwInfo,{TextColor3 = v.TeamColor.Color}):Play()
 	end)
-	
+
 	pcall(function()
 		Team:GetPropertyChangedSignal("TeamColor"):Connect(function()
 			TW:Create(new.PlayerName,StandardTwInfo,{TextColor3 = v.TeamColor.Color}):Play()
@@ -1102,39 +1111,6 @@ for _,v in ipairs(game.Players:GetPlayers()) do
 	end)
 	new:SetAttribute("Owner",v.Name)
 end
-
-game.Players.PlayerAdded:Connect(function(v)
-	local new = Template:Clone()
-	new.Parent = Playerlist
-	new:WaitForChild("PlayerName").Text = v.Name
-	--Icons
-	if v:IsFriendsWith(Player.UserId) then
-		new.Icon = "rbxassetid://1030533835"
-	elseif game.CreatorId == v.UserId then
-		new.Icon = "rbxassetid://11322089611"
-	elseif v.HasVerifiedBadge then
-		new.Icon = "rbxassetid://14152999613"
-	elseif v.MembershipType == Enum.MembershipType.Premium then
-		new.Icon = "rbxassetid://6762167229"
-	end
-
-	if v.Team ~= nil then
-		new.PlayerName.TextColor = v.TeamColor
-	end
-
-	local Team = v.Team
-
-	v:GetPropertyChangedSignal("TeamColor"):Connect(function()
-		TW:Create(new.PlayerName,StandardTwInfo,{TextColor3 = v.TeamColor.Color}):Play()
-	end)
-
-	pcall(function()
-		Team:GetPropertyChangedSignal("TeamColor"):Connect(function()
-			TW:Create(new.PlayerName,StandardTwInfo,{TextColor3 = v.TeamColor.Color}):Play()
-		end)
-	end)
-	new:SetAttribute("Owner",v.Name)
-end)
 
 
 game.Players.PlayerRemoving:Connect(function(plr)
@@ -1191,7 +1167,7 @@ local function InsertDeath(plr1,plr2,deathtype,weapon)
 	else
 		new.Icon.Image = weapon
 		new.Icon.ImageColor3 = Color3.new(1,1,1)
-		new.KillText.Text = string.format('<font color="rgb(255,96,99)">[%d]</font> DIED TO <font color="rgb(255,255,09)">[%d]</font>',plr1,plr2)
+		new.KillText.Text = string.format('<font color="rgb(255,96,99)">[%s]</font> DIED TO <font color="rgb(255,255,09)">[%s]</font>',plr1,plr2)
 	end
 	game:GetService("Debris"):AddItem(new,5)
 end
@@ -1216,7 +1192,7 @@ for _,v in ipairs(game.Players:GetPlayers()) do
 		local Torso = Char:FindFirstChild('HumanoidRootPart')
 		
 		Hum.Died:Connect(function()
-			if Torso.Position.Y <= -500 then
+			if Torso.Position.Y <= workspace.FallenPartsDestroyHeight then
 				InsertDeath(v.Name,nil,"void",nil)
 			end
 			local killer = getKillerOfHumanoidIfStillInGame(Hum)
@@ -1239,7 +1215,7 @@ Char.ChildAdded:Connect(function(obj)
 			local new = Placeholder:Clone()
 			new.Parent = Tools
 			new.ImageLabel.Image = obj.TextureId
-			new:WaitForChild("TextLabel").Text = string.format('OPTAINED: [%d]',obj.Name)
+			new:WaitForChild("TextLabel").Text = string.format('OPTAINED: [%s]',obj.Name)
 			task.wait(3)
 			Disapear(new)
 		end
@@ -1261,14 +1237,14 @@ local Flashlight = false
 local Light
 
 UIS.InputBegan:Connect(function(k)
-	if k.KeyCode == Enum.KeyCode.LeftShift then
+	if k.KeyCode == Enum.KeyCode.LeftControl then
 		local So = Instance.new("Sound",workspace)
 		So.PlayOnRemove = true
 		So.Volume = 2
 		So.SoundId = "rbxassetid://5665078786"
 		So:Destroy()
 		Sprinting = true
-		Hum.WalkSpeed = Hum.WalkSpeed + 15
+		Hum.WalkSpeed = 32
 		repeat
 			task.wait(3)
 			AUX.Frames[Power].Visible = false
@@ -1296,7 +1272,7 @@ end)
 
 
 UIS.InputEnded:Connect(function(k)
-	if k.KeyCode == Enum.KeyCode.LeftShift then
+	if k.KeyCode == Enum.KeyCode.LeftControl then
 		Hum.WalkSpeed = PrevWs
 		Sprinting = false
 	end
