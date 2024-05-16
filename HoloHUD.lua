@@ -980,13 +980,13 @@ local StandardTwInfo = TweenInfo.new(
 local KnownWeapons = {}
 
 
---for _,v in Player.Backpack:GetChildren() do
---	if v ~= nil then
---		if v:IsA("Tool") then
---			table.insert(KnownWeapons,v)
---		end
---	end
---end
+pcall(function()
+	for _,v in ipairs(Player.Backpack:GetChildren()) do
+		if v:IsA("Tool") then
+			table.insert(KnownWeapons,v)
+		end
+	end
+end)
 
 
 
@@ -1070,7 +1070,7 @@ local Minimized = false
 
 local InProcess = false
 
-for _,v in game.Players:GetPlayers() do
+for _,v in ipairs(game.Players:GetPlayers()) do
 	local new = Template:Clone()
 	new.Parent = Playerlist
 	new:WaitForChild("PlayerName").Text = v.Name
@@ -1139,7 +1139,7 @@ end)
 
 game.Players.PlayerRemoving:Connect(function(plr)
 	local TheOne
-	for _,v in Playerlist:GetChildren() do
+	for _,v in ipairs(Playerlist:GetChildren()) do
 		if v:IsA("Frame") then
 			if v:GetAttribute("Owner") == plr.Name then
 				TheOne = v
@@ -1179,7 +1179,7 @@ local MaxMessages = 4
 
 local function InsertDeath(plr1,plr2,deathtype,weapon)
 	if #Folder:GetChildren() == 4 then
-		for _,v in Folder:GetChildren() do
+		for _,v in ipairs(Folder:GetChildren()) do
 			v:Destroy()
 		end
 	end
@@ -1209,7 +1209,7 @@ function getKillerOfHumanoidIfStillInGame(humanoid)
 	return nil
 end
 
-for _,v in game.Players:GetPlayers() do
+for _,v in ipairs(game.Players:GetPlayers()) do
 	pcall(function() -- if player uses a fc
 		local Char = v.Character
 		local Hum = Char:FindFirstChildWhichIsA("Humanoid")
