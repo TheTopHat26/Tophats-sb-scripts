@@ -1,3 +1,5 @@
+-- i write stuff here when i'm bored lmao
+
 return {
 	"This is some cool stuff man.";
 	"omg so epik";
